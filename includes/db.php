@@ -4,14 +4,27 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Database configuration — Live Hosting
-define('DB_HOST', 'localhost');
-define('DB_USER', 'sitevpso_habiba');
-define('DB_PASS', 'FrRMld#zH$KzT1U6');
-define('DB_NAME', 'sitevpso_marketing');
+// ─── Auto Environment Detection ───────────────────────────────────────────
+// Detects whether running on local XAMPP or the live hosting server
+$isLocal = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1', '::1'])
+           || str_contains(strtolower($_SERVER['HTTP_HOST'] ?? ''), 'localhost');
+
+if ($isLocal) {
+    // ── LOCAL (XAMPP) ────────────────────────────────────────────────────────
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'root');
+    define('DB_PASS', '');
+    define('DB_NAME', 'myitcomapny');
+} else {
+    // ── LIVE HOSTING (cPanel) ────────────────────────────────────────────────
+    define('DB_HOST', 'localhost');
+    define('DB_USER', 'sitevpso_habiba');
+    define('DB_PASS', 'FrRMld#zH$KzT1U6');
+    define('DB_NAME', 'sitevpso_marketing');
+}
 
 try {
-    // Connect directly to the live database
+    // Connect to the detected database
     $pdo = new PDO("mysql:host=" . DB_HOST . ";dbname=" . DB_NAME . ";charset=utf8mb4", DB_USER, DB_PASS);
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $pdo->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
