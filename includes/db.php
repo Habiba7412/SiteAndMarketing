@@ -117,7 +117,7 @@ try {
         `linkedin_url` VARCHAR(255) NULL,
         `twitter_url` VARCHAR(255) NULL,
         `github_url` VARCHAR(255) NULL,
-        `display_order` INT DEFAULT 0,
+        `sort_order` INT DEFAULT 0,
         `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=InnoDB;");
 
@@ -686,7 +686,7 @@ try {
             ['Jack Devlin', 'Lead Software Architect', 'Jack is an expert in distributed networks and cloud application scalability, leading the development of custom SaaS components.', 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=300&q=80', 'https://linkedin.com', 'https://twitter.com', 'https://github.com', 2],
             ['Connor McLeod', 'Lead Cybersecurity Auditor', 'Connor ensures all deployments pass zero-trust network checks and database protection validation routines.', 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=300&q=80', 'https://linkedin.com', 'https://twitter.com', 'https://github.com', 3]
         ];
-        $insertTeam = $pdo->prepare("INSERT INTO `team_members` (`name`, `designation`, `bio`, `image_url`, `linkedin_url`, `twitter_url`, `github_url`, `display_order`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $insertTeam = $pdo->prepare("INSERT INTO `team_members` (`name`, `designation`, `bio`, `image_url`, `linkedin_url`, `twitter_url`, `github_url`, `sort_order`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
         foreach ($teams as $team) {
             $insertTeam->execute($team);
         }
