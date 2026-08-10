@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AeroCMS Admin Panel | Enterprise-Grade IT Management</title>
+  <meta name="description" content="Premium, responsive, glassmorphic CMS dashboard for enterprise IT company management.">
+  <link rel="icon" type="image/x-icon" href="https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=48&q=80">
+  
+  <!-- Tailwind CSS Play CDN with custom theme -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Plus Jakarta Sans', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+          },
+          colors: {
+            slate: {
+              950: '#0b0f19'
+            },
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              500: '#6366f1', /* Indigo primary */
+              600: '#4f46e5',
+              700: '#4338ca',
+              accent: '#8b5cf6', /* Violet secondary */
+            }
+          },
+          boxShadow: {
+            'premium': '0 8px 30px rgb(0 0 0 / 0.04)',
+            'premium-dark': '0 8px 30px rgb(0 0 0 / 0.35)',
+            'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.07)',
+            'glass-dark': '0 8px 32px 0 rgba(0, 0, 0, 0.45)',
+          }
+        }
+      }
+    }
+  </script>
+  
+  <!-- Custom overrides -->
+  <link rel="stylesheet" href="css/style.css">
+  
+  <!-- Lucide Icons UMD Build -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-200 transition-colors duration-300 antialiased overflow-x-hidden min-h-screen flex">
+  
+  <!-- Left Collapsible Sidebar -->
+  <aside id="sidebar" class="fixed inset-y-0 left-0 z-40 w-64 bg-white dark:bg-slate-900 border-r border-slate-200 dark:border-slate-800 flex flex-col transition-all duration-300 transform -translate-x-full lg:translate-x-0">
+    <!-- Sidebar Header -->
+    <div class="h-16 flex items-center justify-between px-5 border-b border-slate-200 dark:border-slate-800">
+      <a href="#/dashboard" class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-xl bg-gradient-to-tr from-brand-600 to-brand-accent flex items-center justify-center text-white font-bold shadow-md shadow-brand-500/20">
+          <i data-lucide="layers" class="w-4 h-4"></i>
+        </div>
+        <span class="font-bold text-lg tracking-tight bg-gradient-to-r from-brand-600 to-brand-accent bg-clip-text text-transparent sidebar-text-label">AeroCMS</span>
+      </a>
+      <button id="btn-collapse-sidebar" class="hidden lg:flex p-1.5 rounded-lg border border-slate-200 dark:border-slate-800 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all">
+        <i data-lucide="chevron-left" class="w-4 h-4 transition-transform duration-300" id="collapse-icon"></i>
+      </button>
+    </div>
+
+    <!-- Navigation List (Scrollable) -->
+    <nav class="flex-1 overflow-y-auto px-3 py-4 space-y-6">
+      
+      <!-- Group 1: General -->
+      <div>
+        <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 sidebar-group-title">Home Portal</span>
+        <div class="mt-2 space-y-1">
+          <a href="#/dashboard" data-route="dashboard" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-brand-50 dark:hover:bg-slate-800 hover:text-brand-600 dark:hover:text-brand-500 transition-all group">
+            <i data-lucide="layout-dashboard" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+            <span class="sidebar-text-label">Dashboard</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Group 2: Content -->
+      <div>
+        <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 sidebar-group-title">Content Engine</span>
+        <div class="mt-2 space-y-1">
+          <!-- Collapsible Nav Node -->
+          <div class="space-y-1">
+            <button class="nav-collapsible-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
+              <span class="flex items-center gap-3">
+                <i data-lucide="file-text" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+                <span class="sidebar-text-label">Blog Posts</span>
+              </span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+            </button>
+            <div class="nav-collapsible-content pl-9 pr-2 py-0.5 space-y-1 hidden">
+              <a href="#/blog" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">All Posts</a>
+              <a href="#/blog?action=new" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Add New Post</a>
+              <a href="#/blog?tab=categories" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Categories</a>
+              <a href="#/blog?tab=tags" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Tags & Comments</a>
+            </div>
+          </div>
+
+          <!-- Menu Management -->
+          <div class="space-y-1">
+            <button class="nav-collapsible-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
+              <span class="flex items-center gap-3">
+                <i data-lucide="menu" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+                <span class="sidebar-text-label">Menu System</span>
+              </span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+            </button>
+            <div class="nav-collapsible-content pl-9 pr-2 py-0.5 space-y-1 hidden">
+              <a href="#/menu" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">All Menus</a>
+              <a href="#/menu?action=new" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Create Menu</a>
+              <a href="#/menu?tab=dropdown" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Dropdown Builder</a>
+              <a href="#/menu?tab=megamenu" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Mega Menu</a>
+            </div>
+          </div>
+
+          <a href="#/media" data-route="media" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-brand-600 transition-all group">
+            <i data-lucide="image" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+            <span class="sidebar-text-label">Media Library</span>
+          </a>
+
+          <a href="#/seo" data-route="seo" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-brand-600 transition-all group">
+            <i data-lucide="globe" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+            <span class="sidebar-text-label">SEO Management</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Group 3: Core Operations -->
+      <div>
+        <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 sidebar-group-title">Operations</span>
+        <div class="mt-2 space-y-1">
+          <!-- Users -->
+          <div class="space-y-1">
+            <button class="nav-collapsible-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
+              <span class="flex items-center gap-3">
+                <i data-lucide="users" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+                <span class="sidebar-text-label">Users Hub</span>
+              </span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+            </button>
+            <div class="nav-collapsible-content pl-9 pr-2 py-0.5 space-y-1 hidden">
+              <a href="#/users" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">All Users</a>
+              <a href="#/roles" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Roles & Permissions</a>
+              <a href="#/users?action=new" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Add User</a>
+              <a href="#/system?tab=logs" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">User Activity Logs</a>
+            </div>
+          </div>
+
+          <!-- SEO Management -->
+          <div class="space-y-1">
+            <button class="nav-collapsible-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
+              <span class="flex items-center gap-3">
+                <i data-lucide="globe" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+                <span class="sidebar-text-label">SEO Suite</span>
+              </span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+            </button>
+            <div class="nav-collapsible-content pl-9 pr-2 py-0.5 space-y-1 hidden">
+              <a href="#/seo" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">General SEO Settings</a>
+              <a href="#/seo?tab=metatags" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Meta & Open Graph</a>
+              <a href="#/seo?tab=sitemap" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Robots & Sitemap</a>
+              <a href="#/seo?tab=analytics" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Google Console ID</a>
+            </div>
+          </div>
+
+          <!-- Contact Inbox -->
+          <div class="space-y-1">
+            <button class="nav-collapsible-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
+              <span class="flex items-center gap-3">
+                <i data-lucide="inbox" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+                <span class="sidebar-text-label">Contact Inbox</span>
+              </span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+            </button>
+            <div class="nav-collapsible-content pl-9 pr-2 py-0.5 space-y-1 hidden">
+              <a href="#/contacts" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">All Messages</a>
+              <a href="#/contacts?filter=unread" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Unread Inbox</a>
+              <a href="#/contacts?filter=archived" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Archived Folders</a>
+            </div>
+          </div>
+
+          <a href="#/analytics" data-route="analytics" class="sidebar-item flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 hover:text-brand-600 transition-all group">
+            <i data-lucide="trending-up" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+            <span class="sidebar-text-label">Analytics</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Group 4: Integrations -->
+      <div>
+        <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 sidebar-group-title">Integrations</span>
+        <div class="mt-2 space-y-1">
+          <!-- Email SMTP -->
+          <div class="space-y-1">
+            <button class="nav-collapsible-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
+              <span class="flex items-center gap-3">
+                <i data-lucide="mail" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+                <span class="sidebar-text-label">Email Integrations</span>
+              </span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+            </button>
+            <div class="nav-collapsible-content pl-9 pr-2 py-0.5 space-y-1 hidden">
+              <a href="#/email" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Gmail SMTP Config</a>
+              <a href="#/email?tab=templates" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Auto-Reply Templates</a>
+              <a href="#/email?tab=logs" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Email Delivery Logs</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Group 5: Settings -->
+      <div>
+        <span class="px-3 text-[10px] font-bold uppercase tracking-wider text-slate-400 dark:text-slate-500 sidebar-group-title">Administration</span>
+        <div class="mt-2 space-y-1">
+          <!-- Web config -->
+          <div class="space-y-1">
+            <button class="nav-collapsible-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
+              <span class="flex items-center gap-3">
+                <i data-lucide="settings" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+                <span class="sidebar-text-label">Website Settings</span>
+              </span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+            </button>
+            <div class="nav-collapsible-content pl-9 pr-2 py-0.5 space-y-1 hidden">
+              <a href="#/settings" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">General Brand Setup</a>
+              <a href="#/settings?tab=media" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Logo & Favicon</a>
+              <a href="#/settings?tab=social" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Social & Footer Info</a>
+            </div>
+          </div>
+
+          <!-- System utility -->
+          <div class="space-y-1">
+            <button class="nav-collapsible-btn w-full flex items-center justify-between px-3 py-2.5 rounded-xl text-sm font-medium text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-all group">
+              <span class="flex items-center gap-3">
+                <i data-lucide="shield-check" class="w-4 h-4 shrink-0 group-hover:scale-110 transition-transform"></i>
+                <span class="sidebar-text-label">System Control</span>
+              </span>
+              <i data-lucide="chevron-down" class="w-3.5 h-3.5 transition-transform duration-200"></i>
+            </button>
+            <div class="nav-collapsible-content pl-9 pr-2 py-0.5 space-y-1 hidden">
+              <a href="#/system?tab=security" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Security & Session</a>
+              <a href="#/system?tab=logs" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">System Logs</a>
+              <a href="#/system?tab=backup" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">Backup & Restore</a>
+              <a href="#/system?tab=config" class="block py-1.5 px-3 rounded-lg text-xs font-medium text-slate-500 hover:text-brand-600 dark:hover:text-brand-500 hover:bg-slate-50 dark:hover:bg-slate-800/50">System Settings</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Sidebar Footer / Reset Panel -->
+    <div class="p-4 border-t border-slate-200 dark:border-slate-800 space-y-2">
+      <div class="flex items-center gap-3 px-2 py-1 flex-wrap lg:flex-nowrap">
+        <div class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></div>
+        <span class="text-xs text-slate-500 font-semibold tracking-tight">System Status: Active</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Mobile Sidebar Backdrop Overlay -->
+  <div id="sidebar-backdrop" class="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-30 hidden transition-opacity lg:hidden"></div>
+
+  <!-- Main View Area (Right Pane) -->
+  <div id="main-view-container" class="flex-1 flex flex-col min-h-screen lg:pl-64 transition-all duration-300">
+    
+    <!-- Top Sticky Header -->
+    <header class="sticky top-0 z-30 h-16 bg-white/70 dark:bg-slate-900/70 border-b border-slate-200 dark:border-slate-800 backdrop-blur-md flex items-center justify-between px-6">
+      
+      <!-- Left side: Mobile Toggle & Navigation breadcrumbs -->
+      <div class="flex items-center gap-4">
+        <button id="btn-mobile-sidebar-toggle" class="lg:hidden p-2 rounded-lg text-slate-500 hover:bg-slate-100 dark:hover:bg-slate-800">
+          <i data-lucide="menu" class="w-5 h-5"></i>
+        </button>
+        <div class="hidden sm:flex items-center gap-2 text-xs font-semibold text-slate-400">
+          <span class="hover:text-slate-600 dark:hover:text-slate-200 cursor-pointer">AeroCMS</span>
+          <i data-lucide="chevron-right" class="w-3.5 h-3.5"></i>
+          <span id="breadcrumb-current-view" class="text-slate-700 dark:text-slate-200">Dashboard</span>
+        </div>
+      </div>
+
+      <!-- Right side actions: Global Search, Theme Switch, Messages/Notif, User Menu -->
+      <div class="flex items-center gap-3">
+        
+        <!-- Search bar trigger (Ctrl+K) -->
+        <button id="btn-global-search-trigger" class="flex items-center gap-3 px-3 py-1.5 text-xs text-slate-400 border border-slate-200 dark:border-slate-800 rounded-xl hover:bg-slate-50 dark:hover:bg-slate-800 transition-all font-medium">
+          <i data-lucide="search" class="w-3.5 h-3.5"></i>
+          <span class="hidden md:inline">Search everywhere...</span>
+          <kbd class="hidden md:inline-block px-1.5 py-0.5 text-[9px] bg-slate-100 dark:bg-slate-700 rounded border border-slate-200 dark:border-slate-600 font-sans shadow-sm">Ctrl+K</kbd>
+        </button>
+
+        <!-- Light/Dark Mode Switcher -->
+        <button id="btn-theme-toggle" class="p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-800 transition-all">
+          <i data-lucide="sun" class="w-4 h-4 dark:hidden"></i>
+          <i data-lucide="moon" class="w-4 h-4 hidden dark:block"></i>
+        </button>
+
+        <!-- Notifications Dropdown -->
+        <div class="relative">
+          <button id="btn-notifications-trigger" class="relative p-2 rounded-xl text-slate-500 dark:text-slate-400 hover:bg-slate-50 dark:hover:bg-slate-800 border border-transparent hover:border-slate-200 dark:hover:border-slate-800 transition-all">
+            <i data-lucide="bell" class="w-4 h-4"></i>
+            <span id="notification-badge" class="absolute top-1.5 right-1.5 w-2 h-2 bg-brand-500 dark:bg-brand-accent rounded-full hidden"></span>
+          </button>
+          
+          <!-- Dropdown pane -->
+          <div id="notifications-dropdown" class="absolute right-0 mt-2 w-80 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl z-50 py-3 hidden animate-fade-in">
+            <div class="px-4 pb-2 border-b border-slate-100 dark:border-slate-800/80 flex items-center justify-between">
+              <span class="font-bold text-sm">Notifications</span>
+              <button id="btn-mark-all-read" class="text-xs text-brand-600 dark:text-brand-500 hover:underline">Mark all read</button>
+            </div>
+            <div id="notification-items-list" class="max-h-64 overflow-y-auto py-2 divide-y divide-slate-50 dark:divide-slate-800/50">
+              <!-- Dynamically populated -->
+            </div>
+          </div>
+        </div>
+
+        <!-- Divider -->
+        <div class="h-6 w-[1px] bg-slate-200 dark:bg-slate-800"></div>
+
+        <!-- User Profile Dropdown Hub -->
+        <div class="relative">
+          <button id="btn-profile-trigger" class="flex items-center gap-2 p-1.5 hover:bg-slate-50 dark:hover:bg-slate-800 rounded-xl transition-all border border-transparent hover:border-slate-200 dark:hover:border-slate-800">
+            <img id="header-user-avatar" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=80&q=80" alt="Avatar" class="w-7 h-7 rounded-lg object-cover ring-2 ring-brand-500/10">
+            <span class="hidden md:inline font-semibold text-xs tracking-tight" id="header-user-name">Jack Devlin</span>
+            <i data-lucide="chevron-down" class="w-3.5 h-3.5 text-slate-400 hidden md:block"></i>
+          </button>
+          
+          <!-- Profile dropdown pane -->
+          <div id="profile-dropdown" class="absolute right-0 mt-2 w-56 bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 rounded-2xl shadow-xl z-50 py-2 hidden animate-fade-in">
+            <div class="px-4 py-2.5 border-b border-slate-100 dark:border-slate-800/80">
+              <span class="block font-bold text-xs tracking-tight text-slate-800 dark:text-slate-200" id="header-user-name-expanded">Jack Devlin</span>
+              <span class="block text-[10px] text-slate-400 mt-0.5" id="header-user-role-expanded">Super Admin</span>
+            </div>
+            <div class="py-1">
+              <a href="#/settings" class="flex items-center gap-2 px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+                <i data-lucide="user" class="w-3.5 h-3.5"></i> Profile Settings
+              </a>
+              <a href="#/seo" class="flex items-center gap-2 px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+                <i data-lucide="gauge" class="w-3.5 h-3.5"></i> SEO Checklist
+              </a>
+              <a href="#/system?tab=security" class="flex items-center gap-2 px-4 py-2 text-xs hover:bg-slate-50 dark:hover:bg-slate-800 text-slate-600 dark:text-slate-300">
+                <i data-lucide="shield" class="w-3.5 h-3.5"></i> Security Center
+              </a>
+            </div>
+            <div class="border-t border-slate-100 dark:border-slate-800/80 py-1">
+              <button id="btn-profile-logout" class="w-full text-left flex items-center gap-2 px-4 py-2 text-xs hover:bg-red-50 dark:hover:bg-red-950/20 text-red-500 dark:text-red-400 font-semibold">
+                <i data-lucide="log-out" class="w-3.5 h-3.5"></i> System Logout
+              </button>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </header>
+
+    <!-- Content Target Viewport -->
+    <main id="app-view-viewport" class="flex-1 p-6 md:p-8 space-y-8 overflow-y-auto">
+      <!-- Loading Skeleton Loader initially shown before scripts boot -->
+      <div class="space-y-8 animate-skeleton">
+        <div class="h-12 w-48 bg-slate-200 dark:bg-slate-800 rounded-2xl"></div>
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div class="h-32 bg-slate-200 dark:bg-slate-800 rounded-3xl"></div>
+          <div class="h-32 bg-slate-200 dark:bg-slate-800 rounded-3xl"></div>
+          <div class="h-32 bg-slate-200 dark:bg-slate-800 rounded-3xl"></div>
+          <div class="h-32 bg-slate-200 dark:bg-slate-800 rounded-3xl"></div>
+        </div>
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          <div class="lg:col-span-2 h-96 bg-slate-200 dark:bg-slate-800 rounded-3xl"></div>
+          <div class="h-96 bg-slate-200 dark:bg-slate-800 rounded-3xl"></div>
+        </div>
+      </div>
+    </main>
+
+  </div>
+
+  <!-- Global Modal Element -->
+  <div id="global-modal" class="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/40 backdrop-blur-sm px-4 hidden transition-opacity">
+    <div id="global-modal-content" class="bg-white dark:bg-slate-900 w-full max-w-2xl rounded-3xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden animate-modal">
+      <!-- Injected Dynamically -->
+    </div>
+  </div>
+
+  <!-- Global Toast Notification Center -->
+  <div id="global-toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 pointer-events-none max-w-sm w-full">
+    <!-- Toasts injected dynamically -->
+  </div>
+
+  <!-- Universal Search Everywhere Modal Overlay -->
+  <div id="global-search-modal" class="fixed inset-0 z-50 bg-slate-950/40 backdrop-blur-sm px-4 pt-20 hidden">
+    <div class="mx-auto max-w-2xl bg-white dark:bg-slate-900 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-2xl overflow-hidden flex flex-col max-h-[500px]">
+      <div class="flex items-center gap-3 px-4 py-3.5 border-b border-slate-200 dark:border-slate-800">
+        <i data-lucide="search" class="w-4 h-4 text-slate-400"></i>
+        <input type="text" id="global-search-input" placeholder="Search blogs, menus, settings, users..." class="flex-1 bg-transparent border-none text-sm outline-none focus:ring-0 placeholder-slate-400">
+        <button id="btn-close-search" class="text-xs text-slate-400 hover:text-slate-600 dark:hover:text-slate-200">Esc</button>
+      </div>
+      <div id="global-search-results" class="flex-1 overflow-y-auto divide-y divide-slate-50 dark:divide-slate-800/50 p-2">
+        <div class="text-xs text-slate-400 px-3 py-2">Start typing to search databases and configuration schemas...</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Import core scripts using ESM -->
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>

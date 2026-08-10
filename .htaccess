@@ -1,0 +1,18 @@
+# Apache mod_rewrite for Clean SEO-Friendly URLs
+# DigiRare Technologies - myitcomapny
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /myitcomapny/
+
+    # Do not rewrite existing physical files or directories
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    # Clean Blog Listing Route: /blog/ -> blog.php
+    RewriteRule ^blog/?$ blog.php [QSA,L]
+
+    # Clean Single Blog Detail Route: /blog/slug-name -> single-blog.php?slug=slug-name
+    RewriteRule ^blog/([a-zA-Z0-9_-]+)/?$ single-blog.php?slug=$1 [QSA,L]
+</IfModule>
