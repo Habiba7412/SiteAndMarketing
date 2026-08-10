@@ -6,8 +6,11 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // ─── Auto Environment Detection ───────────────────────────────────────────
 // Detects whether running on local XAMPP or the live hosting server
-$isLocal = in_array($_SERVER['SERVER_NAME'] ?? '', ['localhost', '127.0.0.1', '::1'])
-           || str_contains(strtolower($_SERVER['HTTP_HOST'] ?? ''), 'localhost');
+// Uses strpos() for PHP 7.x compatibility (str_contains requires PHP 8.0+)
+$_httpHost = strtolower(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
+$_serverName = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '';
+$isLocal = in_array($_serverName, ['localhost', '127.0.0.1', '::1'])
+           || (strpos($_httpHost, 'localhost') !== false);
 
 if ($isLocal) {
     // ── LOCAL (XAMPP) ────────────────────────────────────────────────────────
