@@ -21,9 +21,9 @@ if ($isLocal) {
 } else {
     // ── LIVE HOSTING (cPanel) ────────────────────────────────────────────────
     define('DB_HOST', 'localhost');
-    define('DB_USER', 'sitevpso_habiba');
-    define('DB_PASS', 'FrRMld#zH$KzT1U6');
-    define('DB_NAME', 'sitevpso_marketing');
+    define('DB_USER', 'marketing');
+    define('DB_PASS', 'marketing');
+    define('DB_NAME', 'marketingandsite');
 }
 
 try {
