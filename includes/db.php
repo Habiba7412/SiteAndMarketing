@@ -147,7 +147,7 @@ try {
         `id` INT AUTO_INCREMENT PRIMARY KEY,
         `question` VARCHAR(255) NOT NULL,
         `answer` TEXT NOT NULL,
-        `display_order` INT DEFAULT 0,
+        `sort_order` INT DEFAULT 0,
         `status` ENUM('draft', 'published') DEFAULT 'published',
         `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=InnoDB;");
@@ -181,6 +181,13 @@ try {
         $pdo->exec("ALTER TABLE `team_members` ADD `sort_order` INT DEFAULT 0");
     if (!in_array('status', $cols))
         $pdo->exec("ALTER TABLE `team_members` ADD `status` ENUM('draft','published') DEFAULT 'published'");
+
+    // faqs: rename display_order -> sort_order if needed
+    $cols = $pdo->query("SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA='$dbName' AND TABLE_NAME='faqs'")->fetchAll(PDO::FETCH_COLUMN);
+    if (!in_array('sort_order', $cols) && in_array('display_order', $cols))
+        $pdo->exec("ALTER TABLE `faqs` CHANGE `display_order` `sort_order` INT DEFAULT 0");
+    if (!in_array('sort_order', $cols) && !in_array('display_order', $cols))
+        $pdo->exec("ALTER TABLE `faqs` ADD `sort_order` INT DEFAULT 0");
 
     // --- SEO MANAGEMENT SUITE TABLES ---
     $pdo->exec("CREATE TABLE IF NOT EXISTS `seo_global` (
@@ -723,7 +730,7 @@ try {
             ['How do we begin a project estimate with your team?', 'Simply fill out the Estimate form on our homepage or click the Free Consultation button to supply your project scopes. Our architects will contact you within 24 hours to schedule a call.', 2, 'published'],
             ['Do you offer hosting and monthly database updates?', 'Yes! We offer proactive support packages including weekly offsite cloud backups, database defragmentation, security updates, and performance checks.', 3, 'published']
         ];
-        $insertFaq = $pdo->prepare("INSERT INTO `faqs` (`question`, `answer`, `display_order`, `status`) VALUES (?, ?, ?, ?)");
+        $insertFaq = $pdo->prepare("INSERT INTO `faqs` (`question`, `answer`, `sort_order`, `status`) VALUES (?, ?, ?, ?)");
         foreach ($faqs as $f) {
             $insertFaq->execute($f);
         }
