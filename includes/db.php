@@ -25,9 +25,9 @@ if (file_exists($configFile)) {
     // In case config.env.php is missing, fallback to standard cPanel defaults
     // However, creating config.env.php is highly recommended.
     define('DB_HOST', 'localhost');
-    define('DB_USER', 'YOUR_CPANEL_USERNAME');
-    define('DB_PASS', 'YOUR_CPANEL_PASSWORD');
-    define('DB_NAME', 'YOUR_CPANEL_DBNAME');
+    define('DB_USER', 'marketinguser');
+    define('DB_PASS', 'marketingandsite');
+    define('DB_NAME', 'marketingandsite');
     ini_set('display_errors', 0); // Hide errors on live site
 }
 
