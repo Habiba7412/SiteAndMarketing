@@ -10,9 +10,9 @@
 
 return [
     'DB_HOST' => 'localhost',
-    'DB_USER' => 'marketing',
-    'DB_PASS' => 'marketing',
-    'DB_NAME' => 'marketingandsite',
+    'DB_USER' => 'YOUR_CPANEL_USERNAME',
+    'DB_PASS' => 'YOUR_CPANEL_PASSWORD',
+    'DB_NAME' => 'YOUR_CPANEL_DBNAME',
     
     // Set to false in production to hide sensitive errors
     'DISPLAY_ERRORS' => false,
