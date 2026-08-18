@@ -45,10 +45,22 @@ try {
         `id` INT AUTO_INCREMENT PRIMARY KEY,
         `username` VARCHAR(50) NOT NULL UNIQUE,
         `password` VARCHAR(255) NOT NULL,
+        `reset_token` VARCHAR(64) NULL,
+        `reset_expires` DATETIME NULL,
         `email` VARCHAR(100) NOT NULL,
         `name` VARCHAR(100) NOT NULL,
         `created_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     ) ENGINE=InnoDB;");
+    
+    // Auto-migrate to add reset_token if it doesn't exist (for existing tables)
+    try {
+        $stmt = $pdo->query("SHOW COLUMNS FROM `users` LIKE 'reset_token'");
+        if ($stmt->rowCount() == 0) {
+            $pdo->exec("ALTER TABLE `users` ADD COLUMN `reset_token` VARCHAR(64) NULL AFTER `password`, ADD COLUMN `reset_expires` DATETIME NULL AFTER `reset_token`");
+        }
+    } catch (PDOException $e) {
+        // Ignore column check errors
+    }
 
     // 2. Site settings table
     $pdo->exec("CREATE TABLE IF NOT EXISTS `site_settings` (
