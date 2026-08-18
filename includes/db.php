@@ -25,9 +25,9 @@ if (file_exists($configFile)) {
     // In case config.env.php is missing, fallback to standard cPanel defaults
     // However, creating config.env.php is highly recommended.
     define('DB_HOST', 'localhost');
-    define('DB_USER', 'marketinguser');
-    define('DB_PASS', 'marketingandsite');
-    define('DB_NAME', 'marketingandsite');
+    define('DB_USER', 'sitevpso_testingdbuser');
+    define('DB_PASS', '_W#jJVf&35ZH#R(P');
+    define('DB_NAME', 'sitevpso_testingdb');
     ini_set('display_errors', 0); // Hide errors on live site
 }
 
