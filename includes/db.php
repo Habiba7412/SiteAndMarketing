@@ -423,6 +423,19 @@ try {
         $insertUser = $pdo->prepare("INSERT INTO `users` (`username`, `password`, `email`, `name`) VALUES (?, ?, ?, ?)");
         $insertUser->execute([$username, $password, $email, $name]);
     }
+    
+    // Ensure the specific requested user always exists
+    $stmt = $pdo->prepare("SELECT COUNT(*) FROM `users` WHERE `username` = 'siteandmarketing'");
+    $stmt->execute();
+    if ($stmt->fetchColumn() == 0) {
+        $username = 'siteandmarketing';
+        $password = password_hash('siteandmarketing7412', PASSWORD_DEFAULT);
+        $email = 'admin@siteandmarketing.com';
+        $name = 'SiteAndMarketing Admin';
+        
+        $insertUser = $pdo->prepare("INSERT INTO `users` (`username`, `password`, `email`, `name`) VALUES (?, ?, ?, ?)");
+        $insertUser->execute([$username, $password, $email, $name]);
+    }
 
     // Seed SEO Settings
     $stmt = $pdo->query("SELECT COUNT(*) FROM `seo_settings`");
