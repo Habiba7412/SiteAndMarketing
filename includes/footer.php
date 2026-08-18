@@ -5,7 +5,7 @@ if (!isset($siteSettings)) {
     $siteSettings = getSiteSettings($pdo);
 }
 ?>
-    <!-- Footer Area (DigiRare Technologies) -->
+    <!-- Footer Area (Site And Marketing Technologies) -->
     <footer class="bg-brand-darker border-t border-slate-900 pt-20 pb-8 relative overflow-hidden">
         <!-- Background Glowing Blobs -->
         <div class="absolute w-[400px] h-[400px] rounded-full bg-brand-accent/5 filter blur-3xl -top-20 -left-20 pointer-events-none"></div>
@@ -46,7 +46,7 @@ if (!isset($siteSettings)) {
                                     <i class="fa-solid fa-cubes text-brand-dark text-lg"></i>
                                 </div>
                                 <span class="font-heading font-extrabold text-2xl tracking-tight text-white group-hover:text-brand-accent transition-colors">
-                                    DigiRare<span class="text-brand-accent">.</span>
+                                    Site And Marketing<span class="text-brand-accent">.</span>
                                 </span>
                             </div>
                         <?php else: ?>
@@ -54,12 +54,12 @@ if (!isset($siteSettings)) {
                                 <i class="fa-solid fa-cubes text-brand-dark text-lg"></i>
                             </div>
                             <span class="font-heading font-extrabold text-2xl tracking-tight text-white group-hover:text-brand-accent transition-colors">
-                                DigiRare<span class="text-brand-accent">.</span>
+                                Site And Marketing<span class="text-brand-accent">.</span>
                             </span>
                         <?php endif; ?>
                     </a>
                     <p class="text-slate-400 text-sm leading-relaxed">
-                        DigiRare Technologies is a trusted software development and digital solutions company delivering custom websites, web applications, branding, digital marketing, and innovative technology services to businesses worldwide. We focus on quality, creativity, performance, and long-term client success.
+                        Site And Marketing Technologies is a trusted software development and digital solutions company delivering custom websites, web applications, branding, digital marketing, and innovative technology services to businesses worldwide. We focus on quality, creativity, performance, and long-term client success.
                     </p>
                     <!-- Social Media Links with animated hovers -->
                     <div class="flex flex-wrap gap-2.5">
@@ -117,7 +117,7 @@ if (!isset($siteSettings)) {
                         </li>
                         <li class="flex items-center gap-3">
                             <span class="text-brand-accent shrink-0">📧</span>
-                            <a href="mailto:<?php echo htmlspecialchars($siteSettings['support_email'] ?? 'digiraremarketing@gmail.com'); ?>" class="hover:text-brand-accent"><?php echo htmlspecialchars($siteSettings['support_email'] ?? 'digiraremarketing@gmail.com'); ?></a>
+                            <a href="mailto:<?php echo htmlspecialchars($siteSettings['support_email'] ?? 'info@siteandmarketing.com'); ?>" class="hover:text-brand-accent"><?php echo htmlspecialchars($siteSettings['support_email'] ?? 'info@siteandmarketing.com'); ?></a>
                         </li>
                         <li class="flex items-center gap-3">
                             <span class="text-brand-accent shrink-0">📞</span>
@@ -125,7 +125,7 @@ if (!isset($siteSettings)) {
                         </li>
                         <li class="flex items-center gap-3">
                             <span class="text-brand-accent shrink-0">🌐</span>
-                            <a href="http://www.digirare.com" target="_blank" class="hover:text-brand-accent">www.digirare.com</a>
+                            <a href="http://www.siteandmarketing.com" target="_blank" class="hover:text-brand-accent">www.siteandmarketing.com</a>
                         </li>
                         <li class="flex items-start gap-3">
                             <span class="text-brand-accent shrink-0">🕒</span>
@@ -152,9 +152,9 @@ if (!isset($siteSettings)) {
             <!-- Footer Bottom -->
             <div class="pt-8 border-t border-slate-900 flex flex-col lg:flex-row justify-between items-center gap-4 text-xs text-slate-500">
                 <div class="flex flex-col sm:flex-row items-center gap-2 text-center sm:text-left">
-                    <span>© 2026 DigiRare Technologies. All Rights Reserved.</span>
+                    <span>© 2026 Site And Marketing Technologies. All Rights Reserved.</span>
                     <span class="hidden sm:inline text-slate-800">|</span>
-                    <span class="text-slate-400 font-medium">Designed & Developed by DigiRare Technologies.</span>
+                    <span class="text-slate-400 font-medium">Designed & Developed by Site And Marketing Technologies.</span>
                 </div>
                 <div class="flex gap-4">
                     <a href="#" class="hover:text-brand-accent transition-colors">Privacy Policy</a>

@@ -28,7 +28,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 
                 // Dispatch Dynamic Email Alert to Admin Email configured in DB
                 $mailSettings = getMailSettings($pdo);
-                $adminEmail   = !empty($mailSettings['admin_email']) ? $mailSettings['admin_email'] : 'digiraremarketing@gmail.com';
+                $adminEmail   = !empty($mailSettings['admin_email']) ? $mailSettings['admin_email'] : 'info@siteandmarketing.com';
 
                 $adminSubject = "New Contact Inquiry: {$subject}";
                 $adminBody = "
@@ -46,14 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
                 sendDynamicEmail($pdo, $adminEmail, $adminSubject, $adminBody, $email, $name);
 
                 // Dispatch Auto-Thank You Email to Client
-                $clientSubject = "Thank You for Contacting DigiRare Technologies";
+                $clientSubject = "Thank You for Contacting Site And Marketing Technologies";
                 $clientBody = "
                 <div style=\"font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; background: #0e1a1d; color: #f1f5f9; padding: 24px; border-radius: 12px;\">
                     <h2 style=\"color: #10b981; margin-top: 0;\">We Have Received Your Message</h2>
                     <p>Dear {$name},</p>
-                    <p>Thank you for reaching out to DigiRare Technologies. Our solutions engineering group has received your message and will review it promptly.</p>
+                    <p>Thank you for reaching out to Site And Marketing Technologies. Our solutions engineering group has received your message and will review it promptly.</p>
                     <p>Expect a response within 24 hours.</p>
-                    <p>Best regards,<br><strong>DigiRare Technologies Engineering Team</strong></p>
+                    <p>Best regards,<br><strong>Site And Marketing Technologies Engineering Team</strong></p>
                 </div>";
 
                 sendDynamicEmail($pdo, $email, $clientSubject, $clientBody);
@@ -73,8 +73,8 @@ $siteSettings = array_merge([
     'office_address' => 'Islamabad, Pakistan',
     'phone_number'   => '00923199564230',
     'support_phone'  => '00923199564230',
-    'support_email'  => 'digiraremarketing@gmail.com',
-    'sales_email'    => 'digiraremarketing@gmail.com',
+    'support_email'  => 'info@siteandmarketing.com',
+    'sales_email'    => 'info@siteandmarketing.com',
     'map_embed'      => Setting::get('map_embed', ''),
 ], getSiteSettings($pdo));
 
@@ -132,8 +132,8 @@ include __DIR__ . '/includes/header.php';
                     <div>
                         <h4 class="font-heading font-bold text-lg text-white mb-2">Electronic Mails</h4>
                         <p class="text-sm text-slate-400 leading-relaxed">
-                            Support: <a href="mailto:<?php echo htmlspecialchars($siteSettings['support_email'] ?? 'digiraremarketing@gmail.com'); ?>" class="hover:text-brand-accent transition-colors"><?php echo htmlspecialchars($siteSettings['support_email'] ?? 'digiraremarketing@gmail.com'); ?></a> <br>
-                            Sales: <a href="mailto:<?php echo htmlspecialchars($siteSettings['sales_email'] ?? 'digiraremarketing@gmail.com'); ?>" class="hover:text-brand-accent transition-colors"><?php echo htmlspecialchars($siteSettings['sales_email'] ?? 'digiraremarketing@gmail.com'); ?></a>
+                            Support: <a href="mailto:<?php echo htmlspecialchars($siteSettings['support_email'] ?? 'info@siteandmarketing.com'); ?>" class="hover:text-brand-accent transition-colors"><?php echo htmlspecialchars($siteSettings['support_email'] ?? 'info@siteandmarketing.com'); ?></a> <br>
+                            Sales: <a href="mailto:<?php echo htmlspecialchars($siteSettings['sales_email'] ?? 'info@siteandmarketing.com'); ?>" class="hover:text-brand-accent transition-colors"><?php echo htmlspecialchars($siteSettings['sales_email'] ?? 'info@siteandmarketing.com'); ?></a>
                         </p>
                     </div>
                 </div>

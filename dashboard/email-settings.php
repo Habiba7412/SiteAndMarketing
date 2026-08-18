@@ -210,18 +210,18 @@ require_once __DIR__ . '/header.php';
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">From Display Name *</label>
-                                <input type="text" name="from_name" value="<?php echo htmlspecialchars($emailSettings['from_name'] ?? 'DigiRare Technologies'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors">
+                                <input type="text" name="from_name" value="<?php echo htmlspecialchars($emailSettings['from_name'] ?? 'Site And Marketing Technologies'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors">
                             </div>
 
                             <div>
                                 <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">From Sender Email *</label>
-                                <input type="email" name="from_email" value="<?php echo htmlspecialchars($emailSettings['from_email'] ?? 'digiraremarketing@gmail.com'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors font-mono">
+                                <input type="email" name="from_email" value="<?php echo htmlspecialchars($emailSettings['from_email'] ?? 'info@siteandmarketing.com'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors font-mono">
                             </div>
                         </div>
 
                         <div>
                             <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Admin Lead Recipient Email * (Where contact forms send alerts)</label>
-                            <input type="email" name="admin_email" value="<?php echo htmlspecialchars($emailSettings['admin_email'] ?? 'digiraremarketing@gmail.com'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors font-mono">
+                            <input type="email" name="admin_email" value="<?php echo htmlspecialchars($emailSettings['admin_email'] ?? 'info@siteandmarketing.com'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors font-mono">
                         </div>
                     </div>
 

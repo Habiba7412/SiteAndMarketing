@@ -810,7 +810,7 @@ include __DIR__ . '/includes/header.php';
                 </div>
 
                 <div class="pt-4 border-t border-slate-800 flex flex-col sm:flex-row gap-4 justify-between items-center">
-                    <span class="text-xs text-slate-400">Built with enterprise standards by DigiRare Technologies</span>
+                    <span class="text-xs text-slate-400">Built with enterprise standards by Site And Marketing Technologies</span>
                     <a href="contact.php" class="btn-gradient-blue px-6 py-2.5 rounded-full font-heading font-bold text-xs text-white uppercase tracking-wider flex items-center gap-2">
                         <span>Request Similar Project</span>
                         <i class="fa-solid fa-arrow-right text-xs"></i>

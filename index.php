@@ -228,7 +228,7 @@ include __DIR__ . '/includes/header.php';
                     </h2>
                     
                     <p class="text-slate-300 text-base leading-relaxed">
-                        At <strong class="text-white font-semibold">DigiRare Technologies</strong>, we combine innovation, expertise, and the latest technologies to help businesses build secure, scalable, and future-ready digital solutions. From custom software development to cloud infrastructure, AI integration, and cybersecurity, our team delivers high-performance solutions that accelerate growth, improve efficiency, and drive digital transformation.
+                        At <strong class="text-white font-semibold">Site And Marketing Technologies</strong>, we combine innovation, expertise, and the latest technologies to help businesses build secure, scalable, and future-ready digital solutions. From custom software development to cloud infrastructure, AI integration, and cybersecurity, our team delivers high-performance solutions that accelerate growth, improve efficiency, and drive digital transformation.
                     </p>
 
                     <!-- Interactive Checklist -->

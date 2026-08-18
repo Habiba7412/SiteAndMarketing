@@ -112,7 +112,7 @@ require_once __DIR__ . '/header.php';
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
                     <div>
                         <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2">Display Name *</label>
-                        <input type="text" name="name" value="<?php echo htmlspecialchars($adminUser['name'] ?? ''); ?>" required placeholder="e.g. Teckko CEO" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-3 text-xs text-slate-100 placeholder-slate-650 focus:outline-none focus:border-brand-accent transition-colors">
+                        <input type="text" name="name" value="<?php echo htmlspecialchars($adminUser['name'] ?? ''); ?>" required placeholder="e.g. SiteAndMarketing CEO" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-3 text-xs text-slate-100 placeholder-slate-650 focus:outline-none focus:border-brand-accent transition-colors">
                     </div>
 
                     <div>

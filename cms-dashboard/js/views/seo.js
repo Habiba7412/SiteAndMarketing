@@ -214,7 +214,7 @@ const SeoView = {
   },
 
   renderLiveSocialPreviewCard(activePage, global, social) {
-    const title = activePage.meta_title || global.website_title || 'DigiRare Technologies | Enterprise Software & IT Solutions';
+    const title = activePage.meta_title || global.website_title || 'Site And Marketing Technologies | Enterprise Software & IT Solutions';
     const desc = activePage.meta_description || global.meta_description || 'We build next-generation software platforms, custom cloud backends, cybersecurity defense systems, and enterprise UI/UX applications.';
     const img = activePage.og_image || social.og_default_image || global.default_social_image || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=630';
     const domain = global.website_url ? global.website_url.replace('http://', '').replace('https://', '') : 'siteandmarketing.com';
@@ -565,7 +565,7 @@ const SeoView = {
           <form id="form-image-seo" class="space-y-4 text-xs">
             <div>
               <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Default Image ALT Pattern</label>
-              <input type="text" name="default_alt_pattern" value="${imageSettings.default_alt_pattern || '{title} - DigiRare Technologies'}" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none">
+              <input type="text" name="default_alt_pattern" value="${imageSettings.default_alt_pattern || '{title} - Site And Marketing Technologies'}" class="w-full px-3 py-2 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white focus:outline-none">
             </div>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">

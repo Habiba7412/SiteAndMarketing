@@ -1,6 +1,6 @@
 <?php
 /**
- * Dynamic SEO Engine - DigiRare Technologies
+ * Dynamic SEO Engine - Site And Marketing Technologies
  * Handles 301/302 Redirects, Database-Driven Meta Tags, Open Graph,
  * Twitter Cards, Verification, Analytics Scripts & JSON-LD Schemas.
  */
@@ -89,7 +89,7 @@ if (!function_exists('checkSeoRedirects')) {
         $currentUrl = $protocol . $host . ($_SERVER['REQUEST_URI'] ?? '');
 
         // Standard Default Merging Logic
-        $websiteName = !empty($global['website_name']) ? $global['website_name'] : 'DigiRare Technologies';
+        $websiteName = !empty($global['website_name']) ? $global['website_name'] : 'Site And Marketing Technologies';
         
         $title = !empty($customData['title']) 
             ? $customData['title'] 
@@ -144,7 +144,7 @@ if (!function_exists('checkSeoRedirects')) {
             'keywords'         => $keywords,
             'canonical'        => $canonical,
             'robots'           => $robotsMeta,
-            'author'           => $global['author'] ?? 'DigiRare Solutions',
+            'author'           => $global['author'] ?? 'Site And Marketing',
             'language'         => $global['language'] ?? 'en',
             'charset'          => $global['charset'] ?? 'UTF-8',
             'theme_color'      => $global['theme_color'] ?? '#0b1315',
@@ -161,8 +161,8 @@ if (!function_exists('checkSeoRedirects')) {
 
             // Twitter Cards
             'twitter_card'     => $social['twitter_card_type'] ?? 'summary_large_image',
-            'twitter_site'     => $social['twitter_site'] ?? '@digirare_tech',
-            'twitter_creator'  => $social['twitter_creator'] ?? '@digirare_tech',
+            'twitter_site'     => $social['twitter_site'] ?? '@siteandmarketing',
+            'twitter_creator'  => $social['twitter_creator'] ?? '@siteandmarketing',
             'twitter_title'    => $twitterTitle,
             'twitter_description' => $twitterDescription,
             'twitter_image'    => $twitterImage,

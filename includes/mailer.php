@@ -1,6 +1,6 @@
 <?php
 /**
- * Dynamic Database-Driven Email Engine - DigiRare Technologies
+ * Dynamic Database-Driven Email Engine - Site And Marketing Technologies
  * Retrieves SMTP and Mailer settings directly from MySQL `email_settings` table.
  * Supports SMTP (TLS / SSL / Direct socket handshake) & Native PHP mail().
  */
@@ -30,9 +30,9 @@ if (!function_exists('getMailSettings')) {
             'smtp_auth' => 1,
             'smtp_username' => '',
             'smtp_password' => '',
-            'from_name' => 'DigiRare Technologies',
-            'from_email' => 'digiraremarketing@gmail.com',
-            'admin_email' => 'digiraremarketing@gmail.com',
+            'from_name' => 'Site And Marketing Technologies',
+            'from_email' => 'info@siteandmarketing.com',
+            'admin_email' => 'info@siteandmarketing.com',
             'is_enabled' => 1
         ];
         return $cachedSettings;
@@ -48,8 +48,8 @@ if (!function_exists('getMailSettings')) {
             return ['success' => false, 'message' => 'Email delivery is currently disabled in database settings.'];
         }
 
-        $fromEmail = !empty($settings['from_email']) ? $settings['from_email'] : 'digiraremarketing@gmail.com';
-        $fromName  = !empty($settings['from_name'])  ? $settings['from_name']  : 'DigiRare Technologies';
+        $fromEmail = !empty($settings['from_email']) ? $settings['from_email'] : 'info@siteandmarketing.com';
+        $fromName  = !empty($settings['from_name'])  ? $settings['from_name']  : 'Site And Marketing Technologies';
         
         $replyEmail = $replyToEmail ?: $fromEmail;
         $replyName  = $replyToName  ?: $fromName;
@@ -147,7 +147,7 @@ if (!function_exists('getMailSettings')) {
         $headers .= "Reply-To: =?UTF-8?B?" . base64_encode($replyName) . "?= <{$replyEmail}>\r\n";
         $headers .= "Subject: =?UTF-8?B?" . base64_encode($subject) . "?=\r\n";
         $headers .= "Date: " . date('r') . "\r\n";
-        $headers .= "X-Mailer: DigiRare Dynamic PHP Mailer\r\n";
+        $headers .= "X-Mailer: Site And Marketing Dynamic PHP Mailer\r\n";
 
         $fullPayload = $headers . "\r\n" . $bodyHTML . "\r\n.";
         $dataRes = $sendCommand($fullPayload);
@@ -189,11 +189,11 @@ if (!function_exists('getMailSettings')) {
      * Test Email Execution Tool for Dashboard
      */
     function sendTestEmail($pdo, $testRecipient) {
-        $subject = "DigiRare Admin - SMTP Email Integration Test";
+        $subject = "Site And Marketing Admin - SMTP Email Integration Test";
         $body = "
         <div style=\"font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; max-width: 600px; margin: 0 auto; background-color: #0b1315; color: #e2e8f0; border-radius: 16px; overflow: hidden; border: 1px solid #1e293b;\">
             <div style=\"background: linear-gradient(135deg, #0284c7, #10b981); padding: 24px; text-align: center;\">
-                <h1 style=\"color: #0b1315; margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.5px;\">DigiRare Technologies</h1>
+                <h1 style=\"color: #0b1315; margin: 0; font-size: 22px; font-weight: 800; letter-spacing: -0.5px;\">Site And Marketing Technologies</h1>
                 <p style=\"color: #070c0e; margin: 4px 0 0; font-size: 13px; font-weight: 600; text-transform: uppercase;\">Dynamic Email System Integration Test</p>
             </div>
             <div style=\"padding: 32px;\">
@@ -209,11 +209,11 @@ if (!function_exists('getMailSettings')) {
                     </p>
                 </div>
                 <p style=\"font-size: 12px; color: #64748b; margin-bottom: 0;\">
-                    This is an automated test message dispatched directly from your DigiRare Admin Dashboard.
+                    This is an automated test message dispatched directly from your Site And Marketing Admin Dashboard.
                 </p>
             </div>
             <div style=\"background-color: #070c0e; padding: 16px; text-align: center; border-top: 1px solid #1e293b; font-size: 11px; color: #64748b;\">
-                &copy; " . date('Y') . " DigiRare Technologies. All rights reserved.
+                &copy; " . date('Y') . " Site And Marketing Technologies. All rights reserved.
             </div>
         </div>";
 

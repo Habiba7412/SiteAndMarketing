@@ -10,7 +10,7 @@ $siteSettings = getSiteSettings($pdo);
 // Parse JSON website settings from settings key
 $websiteSettingsJson = $siteSettings['websiteSettings'] ?? '{}';
 $webSettings = json_decode($websiteSettingsJson, true);
-$companyName = $webSettings['websiteName'] ?? ($siteSettings['company_name'] ?? 'DigiRare Technologies');
+$companyName = $webSettings['websiteName'] ?? ($siteSettings['company_name'] ?? 'Site And Marketing Technologies');
 $faviconUrl = $webSettings['faviconUrl'] ?? 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=48&q=80';
 $siteLogo = !empty($siteSettings['site_logo']) ? $siteSettings['site_logo'] : (!empty($webSettings['logoUrl']) ? $webSettings['logoUrl'] : '');
 

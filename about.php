@@ -24,7 +24,7 @@ include __DIR__ . '/includes/header.php';
 
         <!-- Subtitle & Breadcrumbs -->
         <p class="text-slate-400 text-base sm:text-lg max-w-2xl font-medium leading-relaxed reveal-on-scroll delay-100">
-            DigiRare Technologies is your trusted partner for custom software engineering, scalable web applications, and transformative digital experiences.
+            Site And Marketing Technologies is your trusted partner for custom software engineering, scalable web applications, and transformative digital experiences.
         </p>
 
         <nav aria-label="Breadcrumb" class="mt-2 reveal-on-scroll delay-150">
@@ -58,7 +58,7 @@ include __DIR__ . '/includes/header.php';
                 
                 <div class="flex flex-col gap-5 text-slate-300 leading-relaxed text-base sm:text-lg">
                     <p>
-                        At <strong class="text-white font-semibold">DigiRare Technologies</strong>, we are passionate about helping businesses grow through innovative technology solutions. Our mission is to transform ideas into powerful digital experiences that increase efficiency, strengthen brands, and drive long-term success.
+                        At <strong class="text-white font-semibold">Site And Marketing Technologies</strong>, we are passionate about helping businesses grow through innovative technology solutions. Our mission is to transform ideas into powerful digital experiences that increase efficiency, strengthen brands, and drive long-term success.
                     </p>
                     <p>
                         We specialize in custom software development, responsive website design, web applications, mobile solutions, UI/UX design, cloud integration, branding, and digital marketing. Every project is built with a focus on performance, security, scalability, and user experience.
@@ -70,7 +70,7 @@ include __DIR__ . '/includes/header.php';
                         By combining creativity, innovation, and technical expertise, we help our clients stay ahead in today's rapidly evolving digital world. Our commitment to quality, transparency, and customer satisfaction has earned us the trust of businesses across multiple industries.
                     </p>
                     <p class="font-medium text-white border-l-4 border-blue-500 pl-4 py-1 italic bg-blue-950/20 rounded-r-xl">
-                        Whether you're launching a new startup, modernizing your existing systems, or scaling your digital presence, DigiRare Technologies is your trusted technology partner.
+                        Whether you're launching a new startup, modernizing your existing systems, or scaling your digital presence, Site And Marketing Technologies is your trusted technology partner.
                     </p>
                 </div>
             </div>
@@ -84,7 +84,7 @@ include __DIR__ . '/includes/header.php';
                     <!-- Glass Frame Wrapper -->
                     <div class="relative h-full rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/90 bg-slate-900/60 backdrop-blur-md group">
                         <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1000&q=80" 
-                             alt="DigiRare Technologies Software Engineering Team" 
+                             alt="Site And Marketing Technologies Software Engineering Team" 
                              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         
                         <div class="absolute inset-0 bg-gradient-to-t from-[#081018] via-transparent to-transparent opacity-80"></div>
@@ -442,7 +442,7 @@ include __DIR__ . '/includes/header.php';
         </h2>
         
         <p class="text-slate-300 text-lg sm:text-xl max-w-2xl leading-relaxed">
-            Partner with DigiRare Technologies and let our experts turn your ideas into innovative, scalable, and high-performing digital products.
+            Partner with Site And Marketing Technologies and let our experts turn your ideas into innovative, scalable, and high-performing digital products.
         </p>
 
         <!-- CTA Buttons -->

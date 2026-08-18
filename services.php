@@ -34,7 +34,7 @@ include __DIR__ . '/includes/header.php';
 
         <!-- Introduction Text -->
         <p class="text-slate-400 text-base sm:text-lg max-w-3xl font-medium leading-relaxed reveal-on-scroll delay-100">
-            At <strong class="text-white font-semibold">DigiRare Technologies</strong>, we combine innovation, expertise, and the latest technologies to help businesses build secure, scalable, and future-ready digital solutions. From custom software development to cloud infrastructure, AI integration, and cybersecurity, our team delivers high-performance solutions that accelerate growth, improve efficiency, and drive digital transformation.
+            At <strong class="text-white font-semibold">Site And Marketing Technologies</strong>, we combine innovation, expertise, and the latest technologies to help businesses build secure, scalable, and future-ready digital solutions. From custom software development to cloud infrastructure, AI integration, and cybersecurity, our team delivers high-performance solutions that accelerate growth, improve efficiency, and drive digital transformation.
         </p>
 
         <!-- Breadcrumbs -->
@@ -284,7 +284,7 @@ include __DIR__ . '/includes/header.php';
         </h2>
         
         <p class="text-slate-300 text-lg sm:text-xl max-w-2xl leading-relaxed">
-            Partner with <strong class="text-white font-semibold">DigiRare Technologies</strong> to build innovative, secure, and scalable digital solutions that help your business stay competitive in today's digital world.
+            Partner with <strong class="text-white font-semibold">Site And Marketing Technologies</strong> to build innovative, secure, and scalable digital solutions that help your business stay competitive in today's digital world.
         </p>
 
         <!-- CTA Buttons -->

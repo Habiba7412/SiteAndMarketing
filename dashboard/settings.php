@@ -128,7 +128,7 @@ require_once __DIR__ . '/header.php';
                         
                         <div>
                             <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Company Name *</label>
-                            <input type="text" name="company_name" value="<?php echo htmlspecialchars($settings['company_name'] ?? 'DigiRare Technologies'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            <input type="text" name="company_name" value="<?php echo htmlspecialchars($settings['company_name'] ?? 'Site And Marketing Technologies'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
                         </div>
 
                         <div>
@@ -162,11 +162,11 @@ require_once __DIR__ . '/header.php';
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Support Email *</label>
-                                <input type="email" name="support_email" value="<?php echo htmlspecialchars($settings['support_email'] ?? 'digiraremarketing@gmail.com'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                                <input type="email" name="support_email" value="<?php echo htmlspecialchars($settings['support_email'] ?? 'info@siteandmarketing.com'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
                             </div>
                             <div>
                                 <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Sales Email</label>
-                                <input type="email" name="sales_email" value="<?php echo htmlspecialchars($settings['sales_email'] ?? 'digiraremarketing@gmail.com'); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                                <input type="email" name="sales_email" value="<?php echo htmlspecialchars($settings['sales_email'] ?? 'info@siteandmarketing.com'); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
                             </div>
                         </div>
                     </div>

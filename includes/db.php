@@ -192,14 +192,14 @@ try {
     // --- SEO MANAGEMENT SUITE TABLES ---
     $pdo->exec("CREATE TABLE IF NOT EXISTS `seo_global` (
         `id` INT PRIMARY KEY DEFAULT 1,
-        `website_name` VARCHAR(255) NOT NULL DEFAULT 'DigiRare Technologies',
-        `website_title` VARCHAR(255) NOT NULL DEFAULT 'DigiRare | NextGen IT & Software Solutions',
+        `website_name` VARCHAR(255) NOT NULL DEFAULT 'Site And Marketing Technologies',
+        `website_title` VARCHAR(255) NOT NULL DEFAULT 'Site And Marketing | NextGen IT & Software Solutions',
         `meta_title` VARCHAR(255) NULL,
         `meta_description` TEXT NULL,
         `website_url` VARCHAR(255) NOT NULL DEFAULT 'https://siteandmarketing.com',
         `canonical_url` VARCHAR(255) NULL,
         `default_keywords` TEXT NULL,
-        `author` VARCHAR(100) NOT NULL DEFAULT 'DigiRare Solutions',
+        `author` VARCHAR(100) NOT NULL DEFAULT 'Site And Marketing',
         `language` VARCHAR(10) NOT NULL DEFAULT 'en',
         `charset` VARCHAR(20) NOT NULL DEFAULT 'UTF-8',
         `theme_color` VARCHAR(20) NOT NULL DEFAULT '#0b1315',
@@ -234,12 +234,12 @@ try {
 
     $pdo->exec("CREATE TABLE IF NOT EXISTS `seo_social` (
         `id` INT PRIMARY KEY DEFAULT 1,
-        `og_site_name` VARCHAR(255) DEFAULT 'DigiRare Technologies',
+        `og_site_name` VARCHAR(255) DEFAULT 'Site And Marketing Technologies',
         `og_type` VARCHAR(50) DEFAULT 'website',
         `og_locale` VARCHAR(20) DEFAULT 'en_US',
         `og_default_image` VARCHAR(255) NULL,
-        `twitter_site` VARCHAR(100) DEFAULT '@digirare_tech',
-        `twitter_creator` VARCHAR(100) DEFAULT '@digirare_tech',
+        `twitter_site` VARCHAR(100) DEFAULT '@siteandmarketing',
+        `twitter_creator` VARCHAR(100) DEFAULT '@siteandmarketing',
         `twitter_card_type` VARCHAR(50) DEFAULT 'summary_large_image',
         `twitter_default_image` VARCHAR(255) NULL,
         `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -288,7 +288,7 @@ try {
 
     $pdo->exec("CREATE TABLE IF NOT EXISTS `seo_image_settings` (
         `id` INT PRIMARY KEY DEFAULT 1,
-        `default_alt_pattern` VARCHAR(255) DEFAULT '{title} - DigiRare Technologies',
+        `default_alt_pattern` VARCHAR(255) DEFAULT '{title} - Site And Marketing Technologies',
         `lazy_loading_enabled` TINYINT(1) DEFAULT 1,
         `webp_support` TINYINT(1) DEFAULT 1,
         `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
@@ -330,9 +330,9 @@ try {
         `smtp_auth` TINYINT(1) DEFAULT 1,
         `smtp_username` VARCHAR(255) DEFAULT '',
         `smtp_password` VARCHAR(255) DEFAULT '',
-        `from_name` VARCHAR(255) DEFAULT 'DigiRare Technologies',
-        `from_email` VARCHAR(255) DEFAULT 'digiraremarketing@gmail.com',
-        `admin_email` VARCHAR(255) DEFAULT 'digiraremarketing@gmail.com',
+        `from_name` VARCHAR(255) DEFAULT 'Site And Marketing Technologies',
+        `from_email` VARCHAR(255) DEFAULT 'info@siteandmarketing.com',
+        `admin_email` VARCHAR(255) DEFAULT 'info@siteandmarketing.com',
         `is_enabled` TINYINT(1) DEFAULT 1,
         `updated_at` TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
     ) ENGINE=InnoDB;");
@@ -350,10 +350,10 @@ try {
 
     // Initialize Default Rows if Empty
     $pdo->exec("INSERT IGNORE INTO `seo_global` (`id`, `website_name`, `website_title`, `meta_description`, `default_keywords`, `favicon_url`, `default_social_image`) 
-    VALUES (1, 'DigiRare Technologies', 'DigiRare Technologies | Enterprise Software & IT Solutions', 'We build next-generation software platforms, custom cloud backends, cybersecurity defense systems, and enterprise UI/UX applications.', 'software, IT company, cloud development, cybersecurity, web apps', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=48&q=80', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=630');");
+    VALUES (1, 'Site And Marketing Technologies', 'Site And Marketing Technologies | Enterprise Software & IT Solutions', 'We build next-generation software platforms, custom cloud backends, cybersecurity defense systems, and enterprise UI/UX applications.', 'software, IT company, cloud development, cybersecurity, web apps', 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=48&q=80', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=630');");
 
     $pdo->exec("INSERT IGNORE INTO `seo_social` (`id`, `og_site_name`, `og_type`, `og_locale`, `og_default_image`, `twitter_site`, `twitter_card_type`) 
-    VALUES (1, 'DigiRare Technologies', 'website', 'en_US', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=630', '@digirare_tech', 'summary_large_image');");
+    VALUES (1, 'Site And Marketing Technologies', 'website', 'en_US', 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=630', '@siteandmarketing', 'summary_large_image');");
 
     $pdo->exec("INSERT IGNORE INTO `seo_verification` (`id`, `google_verification`, `bing_verification`) 
     VALUES (1, '', '');");
@@ -362,7 +362,7 @@ try {
     VALUES (1, '', '');");
 
     $pdo->exec("INSERT IGNORE INTO `seo_image_settings` (`id`, `default_alt_pattern`, `lazy_loading_enabled`, `webp_support`) 
-    VALUES (1, '{title} - DigiRare Technologies', 1, 1);");
+    VALUES (1, '{title} - Site And Marketing Technologies', 1, 1);");
 
     $pdo->exec("INSERT IGNORE INTO `robots_settings` (`id`, `robots_content`, `sitemap_url`) 
     VALUES (1, \"User-agent: *\nAllow: /\nDisallow: /cms-dashboard/\nDisallow: /includes/\n\nSitemap: https://siteandmarketing.com/sitemap.php\", 'https://siteandmarketing.com/sitemap.php');");
@@ -371,25 +371,25 @@ try {
     VALUES (1, 1, 1, 1, 1, 1);");
 
     $pdo->exec("INSERT IGNORE INTO `email_settings` (`id`, `mail_engine`, `smtp_host`, `smtp_port`, `smtp_encryption`, `from_name`, `from_email`, `admin_email`) 
-    VALUES (1, 'smtp', 'smtp.gmail.com', 587, 'tls', 'DigiRare Technologies', 'digiraremarketing@gmail.com', 'digiraremarketing@gmail.com');");
+    VALUES (1, 'smtp', 'smtp.gmail.com', 587, 'tls', 'Site And Marketing Technologies', 'info@siteandmarketing.com', 'info@siteandmarketing.com');");
 
     // All 15 Module 2 Pages for Dynamic Page SEO
     $defaultPages = [
-        ['index.php', 'Homepage', 'DigiRare Technologies | Enterprise Software & IT Solutions', 'Transforming Ideas Into Powerful Digital Solutions for Modern Businesses. Custom software engineering, cloud architecture & cyber security.', 'software company, cloud backend, custom web development, IT consulting', '1.0', 'daily'],
-        ['about.php', 'About Us', 'About Us | DigiRare Technologies', 'Learn about our engineering expertise, company culture, and the dedicated software developers crafting world-class digital solutions.', 'about digirare, IT team, software engineers, company profile', '0.8', 'monthly'],
-        ['services.php', 'Services & Solutions', 'Professional IT Services & Cloud Solutions | DigiRare Technologies', 'Comprehensive technical services including custom software engineering, DevOps automation, cybersecurity audits, and UI/UX design.', 'it services, cloud deployment, web development, cybersecurity audit', '0.9', 'weekly'],
-        ['solutions.php', 'Enterprise Solutions', 'Enterprise Software & Cloud Architecture Solutions | DigiRare', 'Scalable enterprise software systems, microservices infrastructure, and automated cloud deployments tailored for high growth.', 'enterprise solutions, microservices, cloud architecture, system design', '0.9', 'weekly'],
-        ['projects.php', 'Portfolio & Case Studies', 'Portfolio & System Case Studies | DigiRare Technologies', 'Explore our portfolio of enterprise applications, cloud infrastructure deployments, and scalable web solutions delivered worldwide.', 'portfolio, IT case studies, software projects, web applications', '0.9', 'weekly'],
-        ['team.php', 'Our Engineering Team', 'Meet Our Software Engineering Experts | DigiRare Technologies', 'Meet the brilliant minds, system architects, UI designers, and security engineers driving innovation at DigiRare.', 'it team, software engineers, devops team, tech leads', '0.7', 'monthly'],
-        ['pricing.php', 'Pricing & Project Plans', 'Flexible IT Service Pricing & Project Estimates | DigiRare', 'Transparent project pricing models, dedicated developer retainers, and enterprise software engineering contracts.', 'it pricing, software cost estimate, developer retainer, tech rates', '0.8', 'monthly'],
-        ['careers.php', 'Careers & Join Us', 'Join Our Engineering Team | Careers at DigiRare Technologies', 'Explore exciting career opportunities for senior full-stack developers, cloud architects, and UI/UX designers.', 'it careers, software engineer jobs, devops jobs, tech hiring', '0.7', 'monthly'],
-        ['blog.php', 'Tech Insights & Blog', 'Tech Insights & Dev Articles | DigiRare Technologies', 'Deep dive into cloud architecture trends, DevOps practices, software design patterns, and enterprise cybersecurity insights.', 'tech blog, programming tutorials, devops guides, software engineering blog', '0.8', 'daily'],
-        ['blog-category.php', 'Blog Category Archive', 'Category Topics | DigiRare Insights', 'Browse tech articles grouped by category including software engineering, cloud architecture, and cybersecurity.', 'blog categories, dev topics, tech archives', '0.7', 'weekly'],
-        ['single-blog.php', 'Single Blog Article Details', 'Tech Article | DigiRare Insights', 'Detailed technical breakdown and software engineering guide by DigiRare experts.', 'tech post, software guide, IT article', '0.7', 'weekly'],
-        ['contact.php', 'Contact Us', 'Contact Us & Free Tech Consultation | DigiRare Technologies', 'Connect with our solutions engineering group. Schedule a free technical consultation and request project cost estimation.', 'contact IT company, technical support, free consultation, software estimate', '0.8', 'monthly'],
-        ['privacy.php', 'Privacy Policy', 'Privacy Policy & Data Security | DigiRare Technologies', 'Read how DigiRare Technologies protects client data, respects user privacy, and adheres to global security standards.', 'privacy policy, data protection, gdpr compliance', '0.5', 'yearly'],
-        ['terms.php', 'Terms & Conditions', 'Terms & Conditions of Service | DigiRare Technologies', 'Review our master service agreement, terms of service, and software licensing conditions.', 'terms of service, service agreement, terms and conditions', '0.5', 'yearly'],
-        ['404.php', '404 Page Not Found', '404 Page Not Found | DigiRare Technologies', 'The requested page could not be located. Return to DigiRare homepage or explore our IT services.', '404 page, error 404, page not found', '0.1', 'never']
+        ['index.php', 'Homepage', 'Site And Marketing Technologies | Enterprise Software & IT Solutions', 'Transforming Ideas Into Powerful Digital Solutions for Modern Businesses. Custom software engineering, cloud architecture & cyber security.', 'software company, cloud backend, custom web development, IT consulting', '1.0', 'daily'],
+        ['about.php', 'About Us', 'About Us | Site And Marketing Technologies', 'Learn about our engineering expertise, company culture, and the dedicated software developers crafting world-class digital solutions.', 'about digirare, IT team, software engineers, company profile', '0.8', 'monthly'],
+        ['services.php', 'Services & Solutions', 'Professional IT Services & Cloud Solutions | Site And Marketing Technologies', 'Comprehensive technical services including custom software engineering, DevOps automation, cybersecurity audits, and UI/UX design.', 'it services, cloud deployment, web development, cybersecurity audit', '0.9', 'weekly'],
+        ['solutions.php', 'Enterprise Solutions', 'Enterprise Software & Cloud Architecture Solutions | Site And Marketing', 'Scalable enterprise software systems, microservices infrastructure, and automated cloud deployments tailored for high growth.', 'enterprise solutions, microservices, cloud architecture, system design', '0.9', 'weekly'],
+        ['projects.php', 'Portfolio & Case Studies', 'Portfolio & System Case Studies | Site And Marketing Technologies', 'Explore our portfolio of enterprise applications, cloud infrastructure deployments, and scalable web solutions delivered worldwide.', 'portfolio, IT case studies, software projects, web applications', '0.9', 'weekly'],
+        ['team.php', 'Our Engineering Team', 'Meet Our Software Engineering Experts | Site And Marketing Technologies', 'Meet the brilliant minds, system architects, UI designers, and security engineers driving innovation at Site And Marketing.', 'it team, software engineers, devops team, tech leads', '0.7', 'monthly'],
+        ['pricing.php', 'Pricing & Project Plans', 'Flexible IT Service Pricing & Project Estimates | Site And Marketing', 'Transparent project pricing models, dedicated developer retainers, and enterprise software engineering contracts.', 'it pricing, software cost estimate, developer retainer, tech rates', '0.8', 'monthly'],
+        ['careers.php', 'Careers & Join Us', 'Join Our Engineering Team | Careers at Site And Marketing Technologies', 'Explore exciting career opportunities for senior full-stack developers, cloud architects, and UI/UX designers.', 'it careers, software engineer jobs, devops jobs, tech hiring', '0.7', 'monthly'],
+        ['blog.php', 'Tech Insights & Blog', 'Tech Insights & Dev Articles | Site And Marketing Technologies', 'Deep dive into cloud architecture trends, DevOps practices, software design patterns, and enterprise cybersecurity insights.', 'tech blog, programming tutorials, devops guides, software engineering blog', '0.8', 'daily'],
+        ['blog-category.php', 'Blog Category Archive', 'Category Topics | Site And Marketing Insights', 'Browse tech articles grouped by category including software engineering, cloud architecture, and cybersecurity.', 'blog categories, dev topics, tech archives', '0.7', 'weekly'],
+        ['single-blog.php', 'Single Blog Article Details', 'Tech Article | Site And Marketing Insights', 'Detailed technical breakdown and software engineering guide by Site And Marketing experts.', 'tech post, software guide, IT article', '0.7', 'weekly'],
+        ['contact.php', 'Contact Us', 'Contact Us & Free Tech Consultation | Site And Marketing Technologies', 'Connect with our solutions engineering group. Schedule a free technical consultation and request project cost estimation.', 'contact IT company, technical support, free consultation, software estimate', '0.8', 'monthly'],
+        ['privacy.php', 'Privacy Policy', 'Privacy Policy & Data Security | Site And Marketing Technologies', 'Read how Site And Marketing Technologies protects client data, respects user privacy, and adheres to global security standards.', 'privacy policy, data protection, gdpr compliance', '0.5', 'yearly'],
+        ['terms.php', 'Terms & Conditions', 'Terms & Conditions of Service | Site And Marketing Technologies', 'Review our master service agreement, terms of service, and software licensing conditions.', 'terms of service, service agreement, terms and conditions', '0.5', 'yearly'],
+        ['404.php', '404 Page Not Found', '404 Page Not Found | Site And Marketing Technologies', 'The requested page could not be located. Return to Site And Marketing homepage or explore our IT services.', '404 page, error 404, page not found', '0.1', 'never']
     ];
 
     $insertPage = $pdo->prepare("INSERT IGNORE INTO `seo_pages` (`page_key`, `page_name`, `meta_title`, `meta_description`, `keywords`, `sitemap_priority`, `sitemap_changefreq`) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -405,8 +405,8 @@ try {
     if ($stmt->fetchColumn() == 0) {
         $username = 'admin';
         $password = password_hash('admin123', PASSWORD_DEFAULT);
-        $email = 'admin@teckko-it.com';
-        $name = 'Teckko Administrator';
+        $email = 'admin@siteandmarketing.com';
+        $name = 'SiteAndMarketing Administrator';
         
         $insertUser = $pdo->prepare("INSERT INTO `users` (`username`, `password`, `email`, `name`) VALUES (?, ?, ?, ?)");
         $insertUser->execute([$username, $password, $email, $name]);
@@ -416,12 +416,12 @@ try {
     $stmt = $pdo->query("SELECT COUNT(*) FROM `seo_settings`");
     if ($stmt->fetchColumn() == 0) {
         $seos = [
-            ['index.php', 'NextGen Software Innovators & Digital Soft Solutions | Teckko IT Company', 'We provide state-of-the-art software engineering, cybersecurity, cloud architecture, and modern IT services tailored to accelerate your business growth.', 'software, cloud, cybersecurity, nextgen, developers'],
-            ['about.php', 'About Us | Teckko IT Company', 'Learn about our engineering expertise, company history, and meet the development team behind our top-tier IT products and services.', 'it company team, software engineers, about teckko'],
-            ['services.php', 'Professional IT Services & Pricing | Teckko IT Company', 'Comprehensive technical solutions including software development, cloud migration, security audit operations, and AI backend integrations.', 'it services, cloud deployment, tech support, custom web dev'],
-            ['projects.php', 'IT Case Studies & Portfolio | Teckko IT Company', 'Read about our successful deployments, enterprise systems, and UI/UX design portfolios engineered for scale.', 'case studies, portfolio, system architecture, web design projects'],
-            ['blog.php', 'Tech Insights & News | Teckko IT Company', 'Browse tech articles, cloud computing guides, threat analysis reports, and software development methodologies.', 'blog, tech blog, devops articles, programming trends'],
-            ['contact.php', 'Contact Us | Teckko IT Company', 'Get in touch with our solutions design group. Request a free consultation and project scope estimation.', 'contact center, it consulting support, email support']
+            ['index.php', 'NextGen Software Innovators & Digital Soft Solutions | SiteAndMarketing IT Company', 'We provide state-of-the-art software engineering, cybersecurity, cloud architecture, and modern IT services tailored to accelerate your business growth.', 'software, cloud, cybersecurity, nextgen, developers'],
+            ['about.php', 'About Us | SiteAndMarketing IT Company', 'Learn about our engineering expertise, company history, and meet the development team behind our top-tier IT products and services.', 'it company team, software engineers, about teckko'],
+            ['services.php', 'Professional IT Services & Pricing | SiteAndMarketing IT Company', 'Comprehensive technical solutions including software development, cloud migration, security audit operations, and AI backend integrations.', 'it services, cloud deployment, tech support, custom web dev'],
+            ['projects.php', 'IT Case Studies & Portfolio | SiteAndMarketing IT Company', 'Read about our successful deployments, enterprise systems, and UI/UX design portfolios engineered for scale.', 'case studies, portfolio, system architecture, web design projects'],
+            ['blog.php', 'Tech Insights & News | SiteAndMarketing IT Company', 'Browse tech articles, cloud computing guides, threat analysis reports, and software development methodologies.', 'blog, tech blog, devops articles, programming trends'],
+            ['contact.php', 'Contact Us | SiteAndMarketing IT Company', 'Get in touch with our solutions design group. Request a free consultation and project scope estimation.', 'contact center, it consulting support, email support']
         ];
         
         $insertSeo = $pdo->prepare("INSERT INTO `seo_settings` (`page_name`, `title`, `meta_description`, `meta_keywords`) VALUES (?, ?, ?, ?)");
@@ -434,12 +434,12 @@ try {
     $stmt = $pdo->query("SELECT COUNT(*) FROM `site_settings`");
     if ($stmt->fetchColumn() == 0) {
         $settings = [
-            'company_name' => 'DigiRare Technologies',
+            'company_name' => 'Site And Marketing Technologies',
             'office_address' => 'Islamabad, Pakistan',
             'phone_number' => '00923199564230',
             'support_phone' => '00923199564230',
-            'support_email' => 'digiraremarketing@gmail.com',
-            'sales_email' => 'digiraremarketing@gmail.com',
+            'support_email' => 'info@siteandmarketing.com',
+            'sales_email' => 'info@siteandmarketing.com',
             'facebook_url' => 'https://facebook.com',
             'twitter_url' => 'https://twitter.com',
             'linkedin_url' => 'https://linkedin.com',
@@ -468,20 +468,20 @@ try {
             $insertSetting->execute([$key, $value]);
         }
     } else {
-        // Force sync contact settings for DigiRare Technologies
+        // Force sync contact settings for Site And Marketing Technologies
         $updates = [
-            'company_name'   => 'DigiRare Technologies',
+            'company_name'   => 'Site And Marketing Technologies',
             'office_address' => 'Islamabad, Pakistan',
             'phone_number'   => '00923199564230',
             'support_phone'  => '00923199564230',
-            'support_email'  => 'digiraremarketing@gmail.com',
-            'sales_email'    => 'digiraremarketing@gmail.com'
+            'support_email'  => 'info@siteandmarketing.com',
+            'sales_email'    => 'info@siteandmarketing.com'
         ];
         $updateSetting = $pdo->prepare("UPDATE `site_settings` SET `setting_value` = ? WHERE `setting_key` = ?");
         foreach ($updates as $key => $val) {
             $updateSetting->execute([$val, $key]);
         }
-        $pdo->exec("UPDATE `email_settings` SET `from_email` = 'digiraremarketing@gmail.com', `admin_email` = 'digiraremarketing@gmail.com' WHERE `from_email` = 'hello@digirare.com' OR `admin_email` = 'hello@digirare.com'");
+        $pdo->exec("UPDATE `email_settings` SET `from_email` = 'info@siteandmarketing.com', `admin_email` = 'info@siteandmarketing.com' WHERE `from_email` = 'hello@siteandmarketing.com' OR `admin_email` = 'hello@siteandmarketing.com'");
     }
 
     // Seed Services
@@ -611,8 +611,8 @@ try {
                 'Technology',
                 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=80',
                 'Discover how modern software development, cloud technologies, artificial intelligence, and user-focused design are helping businesses become more efficient, scalable, and competitive in today\'s digital landscape.',
-                'In today\'s rapidly evolving digital landscape, businesses face unprecedented challenges and opportunities. Transforming legacy systems into agile, scalable, and high-performance digital products is no longer optional—it is essential for long-term market survival. At DigiRare Technologies, we combine modern software engineering paradigms with artificial intelligence and cloud-native architecture to deliver enterprise solutions that drive measurable business outcomes.',
-                'DigiRare Technologies'
+                'In today\'s rapidly evolving digital landscape, businesses face unprecedented challenges and opportunities. Transforming legacy systems into agile, scalable, and high-performance digital products is no longer optional—it is essential for long-term market survival. At Site And Marketing Technologies, we combine modern software engineering paradigms with artificial intelligence and cloud-native architecture to deliver enterprise solutions that drive measurable business outcomes.',
+                'Site And Marketing Technologies'
             ],
             [
                 'The Future of Artificial Intelligence in Business',
@@ -621,7 +621,7 @@ try {
                 'https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80',
                 'Artificial Intelligence is transforming industries through automation, predictive analytics, customer support, and intelligent decision-making. Learn how businesses can leverage AI to improve productivity and customer satisfaction.',
                 'Artificial Intelligence is rapidly revolutionizing corporate workflows across all sectors. From intelligent chatbots automating 24/7 customer service to machine learning models predicting financial market movements, AI integrations provide a decisive competitive edge. Implementing responsible AI workflows allows teams to streamline routine tasks and focus on core strategic growth.',
-                'DigiRare Technologies'
+                'Site And Marketing Technologies'
             ],
             [
                 'Why Every Business Needs a Professional Website',
@@ -630,7 +630,7 @@ try {
                 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
                 'A modern website is more than an online presence—it\'s a powerful marketing tool that builds trust, generates leads, improves customer engagement, and increases revenue.',
                 'Your website is often the very first touchpoint prospective clients have with your brand. A slow, outdated, or unresponsive site creates instant friction and loses high-value leads to competitors. A custom-built, fast, and mobile-optimized web application acts as your 24/7 sales representative, establishing immediate brand credibility and maximizing conversion rates.',
-                'DigiRare Technologies'
+                'Site And Marketing Technologies'
             ],
             [
                 'Top SEO Strategies to Improve Google Rankings',
@@ -639,7 +639,7 @@ try {
                 'https://images.unsplash.com/photo-1533750349088-cd871a92f312?auto=format&fit=crop&w=800&q=80',
                 'Explore practical SEO techniques including keyword research, technical optimization, content marketing, internal linking, page speed optimization, and backlink strategies.',
                 'Organic search traffic remains the highest ROI channel for digital growth. Achieving page-one Google rankings requires a holistic strategy combining technical site speed optimization, clean HTML structure, semantic schemas, keyword research, and high-quality backlinks. Continuous optimization ensures long-term organic visibility.',
-                'DigiRare Technologies'
+                'Site And Marketing Technologies'
             ],
             [
                 'Cybersecurity Best Practices for Small Businesses',
@@ -648,7 +648,7 @@ try {
                 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80',
                 'Protect your organization from cyber threats by implementing strong authentication, secure backups, employee awareness, regular software updates, and network security measures.',
                 'Cyberattacks targeting small and medium enterprises have escalated dramatically. Implementing multi-factor authentication (MFA), automated offsite database backups, encrypted SSL connections, and routine vulnerability scanning forms an unshakeable defense perimeter protecting critical customer data and business operations.',
-                'DigiRare Technologies'
+                'Site And Marketing Technologies'
             ],
             [
                 'How Cloud Computing Improves Business Efficiency',
@@ -657,7 +657,7 @@ try {
                 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=800&q=80',
                 'Cloud technologies enable businesses to reduce infrastructure costs, improve collaboration, increase flexibility, and scale operations quickly while maintaining high security.',
                 'Migrating on-premise servers to cloud environments like AWS or Google Cloud offers unparalleled scalability and uptime. Automated server scaling adjusts compute capacity to match traffic spikes seamlessly, reducing infrastructure costs by up to 40% while preserving sub-second response times.',
-                'DigiRare Technologies'
+                'Site And Marketing Technologies'
             ],
             [
                 'UI/UX Design Trends That Increase User Engagement',
@@ -666,7 +666,7 @@ try {
                 'https://images.unsplash.com/photo-1581291518633-83b4ebd1d83e?auto=format&fit=crop&w=800&q=80',
                 'Learn how intuitive navigation, accessibility, responsive layouts, interactive elements, and modern design principles create exceptional user experiences.',
                 'Great design is invisible—it guides users effortlessly toward their goal without cognitive friction. Utilizing glassmorphic UI elements, micro-animations, accessible color contrasts, and responsive layouts dramatically improves user retention rates and customer satisfaction scores.',
-                'DigiRare Technologies'
+                'Site And Marketing Technologies'
             ],
             [
                 'Digital Marketing Strategies That Drive More Leads',
@@ -675,7 +675,7 @@ try {
                 'https://images.unsplash.com/photo-1432888622747-4eb9a8efeb07?auto=format&fit=crop&w=800&q=80',
                 'Understand how SEO, Google Ads, social media marketing, content marketing, and email campaigns work together to generate qualified leads and business growth.',
                 'Multi-channel digital marketing generates consistent pipeline growth. Combining high-intent Google Search Ads with retargeting Meta campaigns and SEO content establishes brand dominance across all touchpoints, turning casual browsers into loyal customers.',
-                'DigiRare Technologies'
+                'Site And Marketing Technologies'
             ],
             [
                 'Why Custom Software is Better Than Ready-Made Solutions',
@@ -684,7 +684,7 @@ try {
                 'https://images.unsplash.com/photo-1555066931-4365d14bab8c?auto=format&fit=crop&w=800&q=80',
                 'Custom software provides better security, flexibility, scalability, performance, and seamless integration compared to generic off-the-shelf applications.',
                 'Off-the-shelf software often forces businesses to compromise operational workflows to fit rigid vendor software limits. Custom software development creates tailored applications engineered strictly around your exact business requirements, ensuring complete data ownership and long-term scalability.',
-                'DigiRare Technologies'
+                'Site And Marketing Technologies'
             ]
         ];
         
@@ -712,7 +712,7 @@ try {
     $stmt = $pdo->query("SELECT COUNT(*) FROM `testimonials`");
     if ($stmt->fetchColumn() == 0) {
         $testimonials = [
-            ['Alex Rivers', 'CEO, Innovate Corp', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80', 5, 'DigiRare Technologies delivered our payments portal ahead of schedule. Their attention to security protocols and custom dashboards was phenomenal!', 'published'],
+            ['Alex Rivers', 'CEO, Innovate Corp', 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80', 5, 'Site And Marketing Technologies delivered our payments portal ahead of schedule. Their attention to security protocols and custom dashboards was phenomenal!', 'published'],
             ['Brenda Chen', 'CTO, CloudScale Inc.', 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&w=150&q=80', 5, 'Their database clustering and cybersecurity migration saved our system from countless latencies. They are our go-to partners for cloud operations!', 'published'],
             ['David Miller', 'Founder, Transit Logistics', 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80', 5, 'The custom CRM and order tracking system they designed for our logistics team boosted our delivery rates by 35%. Excellent UI/UX execution!', 'published']
         ];
@@ -726,7 +726,7 @@ try {
     $stmt = $pdo->query("SELECT COUNT(*) FROM `faqs`");
     if ($stmt->fetchColumn() == 0) {
         $faqs = [
-            ['What services does DigiRare Technologies provide?', 'We specialize in WordPress customized developments, custom web applications (CRM, dashboard system), secure e-commerce portals, landing page conversions, corporate graphic branding, Canva templates, and monthly website support.', 1, 'published'],
+            ['What services does Site And Marketing Technologies provide?', 'We specialize in WordPress customized developments, custom web applications (CRM, dashboard system), secure e-commerce portals, landing page conversions, corporate graphic branding, Canva templates, and monthly website support.', 1, 'published'],
             ['How do we begin a project estimate with your team?', 'Simply fill out the Estimate form on our homepage or click the Free Consultation button to supply your project scopes. Our architects will contact you within 24 hours to schedule a call.', 2, 'published'],
             ['Do you offer hosting and monthly database updates?', 'Yes! We offer proactive support packages including weekly offsite cloud backups, database defragmentation, security updates, and performance checks.', 3, 'published']
         ];
@@ -737,7 +737,12 @@ try {
     }
 
 } catch (PDOException $e) {
-    die("Database Connection failed: " . $e->getMessage() . "<br><br>Please verify MySQL in XAMPP is running and active on localhost.");
+    if ($isLocal) {
+        die("Database Connection failed: " . $e->getMessage() . "<br><br>Please verify MySQL is running locally.");
+    } else {
+        error_log("DB Connection Error: " . $e->getMessage());
+        die("Database Connection failed. Please check your config.env.php credentials or contact server support.");
+    }
 }
 
 // Function to fetch active site settings

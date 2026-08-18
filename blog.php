@@ -74,7 +74,7 @@ include __DIR__ . '/includes/header.php';
 
         <!-- Description -->
         <p class="text-slate-400 text-base sm:text-lg max-w-3xl font-medium leading-relaxed reveal-on-scroll delay-100">
-            Stay updated with the latest articles, industry insights, technology trends, software development guides, cybersecurity tips, AI innovations, digital marketing strategies, and business growth ideas from DigiRare Technologies.
+            Stay updated with the latest articles, industry insights, technology trends, software development guides, cybersecurity tips, AI innovations, digital marketing strategies, and business growth ideas from Site And Marketing Technologies.
         </p>
 
         <!-- Breadcrumbs -->
@@ -151,7 +151,7 @@ include __DIR__ . '/includes/header.php';
             <!-- Featured Content -->
             <div class="lg:col-span-5 p-8 lg:p-12 flex flex-col gap-6 justify-between">
                 <div class="flex items-center gap-4 text-xs text-slate-400 font-medium">
-                    <span><i class="fa-solid fa-user text-blue-400 mr-1"></i> <?php echo htmlspecialchars($featuredBlog['author'] ?: 'DigiRare Technologies'); ?></span>
+                    <span><i class="fa-solid fa-user text-blue-400 mr-1"></i> <?php echo htmlspecialchars($featuredBlog['author'] ?: 'Site And Marketing Technologies'); ?></span>
                     <span>•</span>
                     <span><i class="fa-solid fa-clock text-slate-500 mr-1"></i> 8 Minutes Read</span>
                 </div>
@@ -288,7 +288,7 @@ include __DIR__ . '/includes/header.php';
                     <div class="p-7 flex flex-col flex-grow justify-between gap-5">
                         <div>
                             <div class="flex items-center gap-3 text-xs text-slate-400 font-medium mb-3">
-                                <span><i class="fa-solid fa-user text-blue-400 mr-1"></i> <?php echo htmlspecialchars($post['author'] ?: 'DigiRare Technologies'); ?></span>
+                                <span><i class="fa-solid fa-user text-blue-400 mr-1"></i> <?php echo htmlspecialchars($post['author'] ?: 'Site And Marketing Technologies'); ?></span>
                                 <span>•</span>
                                 <span><?php echo date('M d, Y', strtotime($post['created_at'])); ?></span>
                             </div>
@@ -509,7 +509,7 @@ include __DIR__ . '/includes/header.php';
         </h2>
         
         <p class="text-slate-300 text-lg sm:text-xl max-w-2xl leading-relaxed">
-            Partner with DigiRare Technologies to build secure, scalable, and innovative digital solutions that help your business grow faster.
+            Partner with Site And Marketing Technologies to build secure, scalable, and innovative digital solutions that help your business grow faster.
         </p>
 
         <!-- CTA Buttons -->

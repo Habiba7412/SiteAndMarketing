@@ -200,7 +200,7 @@ require_once __DIR__ . '/header.php';
 
                         <div>
                             <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Website Brand Name</label>
-                            <input type="text" name="website_name" value="<?php echo htmlspecialchars($seoGlobal['website_name'] ?? 'DigiRare Technologies'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            <input type="text" name="website_name" value="<?php echo htmlspecialchars($seoGlobal['website_name'] ?? 'Site And Marketing Technologies'); ?>" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
                         </div>
 
                         <div>
@@ -221,7 +221,7 @@ require_once __DIR__ . '/header.php';
                         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                             <div>
                                 <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Author Tag</label>
-                                <input type="text" name="author" value="<?php echo htmlspecialchars($seoGlobal['author'] ?? 'DigiRare Solutions'); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                                <input type="text" name="author" value="<?php echo htmlspecialchars($seoGlobal['author'] ?? 'Site And Marketing'); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
                             </div>
                             <div>
                                 <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Default Social Image URL</label>
@@ -317,7 +317,7 @@ require_once __DIR__ . '/header.php';
 
                         <div>
                             <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1">Meta Title *</label>
-                            <input type="text" name="new_meta_title" placeholder="e.g. Flexible IT Service Pricing | DigiRare" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-accent">
+                            <input type="text" name="new_meta_title" placeholder="e.g. Flexible IT Service Pricing | Site And Marketing" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-3.5 py-2 text-xs text-slate-100 focus:outline-none focus:border-brand-accent">
                         </div>
 
                         <div>

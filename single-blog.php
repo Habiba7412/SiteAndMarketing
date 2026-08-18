@@ -35,7 +35,7 @@ $host = $_SERVER['HTTP_HOST'] ?? 'siteandmarketing.com';
 $cleanBlogUrl = $protocol . $host . '/myitcomapny/blog/' . rawurlencode($slug);
 
 $customSeoData = [
-    'title' => $blog['title'] . ' | DigiRare Tech Insights',
+    'title' => $blog['title'] . ' | Site And Marketing Tech Insights',
     'description' => $blog['excerpt'],
     'canonical' => $cleanBlogUrl,
     'og_title' => $blog['title'],

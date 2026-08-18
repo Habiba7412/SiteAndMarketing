@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Login Center | Teckko IT Company</title>
+    <title>Admin Login Center | SiteAndMarketing IT Company</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -98,7 +98,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <i class="fa-solid fa-cubes text-brand-dark text-2xl font-bold"></i>
             </div>
             <h1 class="font-heading font-extrabold text-3xl tracking-tight text-white">
-                Teckko<span class="text-brand-accent">.</span> <span class="text-slate-400 text-lg font-medium">Control panel</span>
+                SiteAndMarketing<span class="text-brand-accent">.</span> <span class="text-slate-400 text-lg font-medium">Control panel</span>
             </h1>
         </div>
 

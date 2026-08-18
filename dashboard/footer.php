@@ -2,7 +2,7 @@
         
         <!-- Dashboard Footer -->
         <footer class="h-14 border-t border-slate-800/40 px-6 flex items-center justify-between text-xs text-slate-500 bg-brand-darker/5">
-            <span>Copyright &copy; <?php echo date('Y'); ?> Teckko. All Rights Reserved.</span>
+            <span>Copyright &copy; <?php echo date('Y'); ?> SiteAndMarketing. All Rights Reserved.</span>
             <span>AdminLTE Dynamic Control Platform</span>
         </footer>
     </div>

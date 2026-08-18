@@ -506,14 +506,14 @@ switch ($action) {
                 `apple_touch_icon` = ?, `default_social_image` = ?
                 WHERE `id` = 1");
             $stmt->execute([
-                $body['website_name'] ?? 'DigiRare Technologies',
+                $body['website_name'] ?? 'Site And Marketing Technologies',
                 $body['website_title'] ?? '',
                 $body['meta_title'] ?? '',
                 $body['meta_description'] ?? '',
                 $body['website_url'] ?? 'https://siteandmarketing.com',
                 $body['canonical_url'] ?? '',
                 $body['default_keywords'] ?? '',
-                $body['author'] ?? 'DigiRare Solutions',
+                $body['author'] ?? 'Site And Marketing',
                 $body['language'] ?? 'en',
                 $body['charset'] ?? 'UTF-8',
                 $body['theme_color'] ?? '#0b1315',
@@ -635,12 +635,12 @@ switch ($action) {
                 `twitter_site` = ?, `twitter_creator` = ?, `twitter_card_type` = ?, `twitter_default_image` = ?
                 WHERE `id` = 1");
             $stmt->execute([
-                $body['og_site_name'] ?? 'DigiRare Technologies',
+                $body['og_site_name'] ?? 'Site And Marketing Technologies',
                 $body['og_type'] ?? 'website',
                 $body['og_locale'] ?? 'en_US',
                 $body['og_default_image'] ?? '',
-                $body['twitter_site'] ?? '@digirare_tech',
-                $body['twitter_creator'] ?? '@digirare_tech',
+                $body['twitter_site'] ?? '@siteandmarketing',
+                $body['twitter_creator'] ?? '@siteandmarketing',
                 $body['twitter_card_type'] ?? 'summary_large_image',
                 $body['twitter_default_image'] ?? ''
             ]);
@@ -679,7 +679,7 @@ switch ($action) {
                 `default_alt_pattern` = ?, `lazy_loading_enabled` = ?, `webp_support` = ?
                 WHERE `id` = 1");
             $stmt->execute([
-                $body['default_alt_pattern'] ?? '{title} - DigiRare Technologies',
+                $body['default_alt_pattern'] ?? '{title} - Site And Marketing Technologies',
                 isset($body['lazy_loading_enabled']) ? (int)$body['lazy_loading_enabled'] : 1,
                 isset($body['webp_support']) ? (int)$body['webp_support'] : 1
             ]);

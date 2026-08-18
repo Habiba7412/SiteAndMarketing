@@ -1,6 +1,6 @@
 <?php
 /**
- * Dynamic XML Sitemap Generator - DigiRare Technologies
+ * Dynamic XML Sitemap Generator - Site And Marketing Technologies
  * Generates standards-compliant XML sitemap for search engine indexing.
  */
 

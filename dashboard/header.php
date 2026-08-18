@@ -17,7 +17,7 @@ try {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teckko | Admin Control Panel</title>
+    <title>SiteAndMarketing | Admin Control Panel</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -88,7 +88,7 @@ try {
                         <i class="fa-solid fa-cubes text-brand-dark text-sm"></i>
                     </div>
                     <span class="font-heading font-extrabold text-xl tracking-tight text-white">
-                        Teckko<span class="text-brand-accent">.</span> <span class="text-[9px] uppercase tracking-widest text-slate-500 font-bold block -mt-1">Admin</span>
+                        SiteAndMarketing<span class="text-brand-accent">.</span> <span class="text-[9px] uppercase tracking-widest text-slate-500 font-bold block -mt-1">Admin</span>
                     </span>
                 </a>
                 
