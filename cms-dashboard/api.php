@@ -510,7 +510,7 @@ switch ($action) {
                 $body['website_title'] ?? '',
                 $body['meta_title'] ?? '',
                 $body['meta_description'] ?? '',
-                $body['website_url'] ?? 'http://localhost/myitcomapny',
+                $body['website_url'] ?? 'https://siteandmarketing.com',
                 $body['canonical_url'] ?? '',
                 $body['default_keywords'] ?? '',
                 $body['author'] ?? 'DigiRare Solutions',
@@ -796,7 +796,7 @@ switch ($action) {
         $content = $body['robots_content'] ?? '';
         try {
             $stmt = $pdo->prepare("UPDATE `robots_settings` SET `robots_content` = ?, `sitemap_url` = ? WHERE `id` = 1");
-            $stmt->execute([$content, $body['sitemap_url'] ?? 'http://localhost/myitcomapny/sitemap.php']);
+            $stmt->execute([$content, $body['sitemap_url'] ?? 'https://siteandmarketing.com/sitemap.php']);
             
             // Sync to physical robots.txt file in project root
             $robotsFile = __DIR__ . '/../robots.txt';

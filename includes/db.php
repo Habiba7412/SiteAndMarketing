@@ -6,25 +6,31 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // ─── Auto Environment Detection ───────────────────────────────────────────
 // Detects whether running on local XAMPP or the live hosting server
-// Uses strpos() for PHP 7.x compatibility (str_contains requires PHP 8.0+)
 $_httpHost = strtolower(isset($_SERVER['HTTP_HOST']) ? $_SERVER['HTTP_HOST'] : '');
 $_serverName = isset($_SERVER['SERVER_NAME']) ? $_SERVER['SERVER_NAME'] : '';
 $isLocal = in_array($_serverName, ['localhost', '127.0.0.1', '::1'])
            || (strpos($_httpHost, 'localhost') !== false);
 
-if ($isLocal) {
-    // ── LOCAL (XAMPP) ────────────────────────────────────────────────────────
-    define('DB_HOST', 'localhost');
-    define('DB_USER', 'root');
-    define('DB_PASS', '');
-    define('DB_NAME', 'myitcomapny');
+// Load secure environment config if it exists
+$configFile = __DIR__ . '/../config.env.php';
+if (file_exists($configFile)) {
+    $env = require $configFile;
+    define('DB_HOST', $env['DB_HOST'] ?? 'localhost');
+    define('DB_USER', $env['DB_USER'] ?? 'root');
+    define('DB_PASS', $env['DB_PASS'] ?? '');
+    define('DB_NAME', $env['DB_NAME'] ?? 'myitcomapny');
+    ini_set('display_errors', $env['DISPLAY_ERRORS'] ? 1 : 0);
 } else {
-    // ── LIVE HOSTING (cPanel) ────────────────────────────────────────────────
+    // ── LIVE HOSTING FALLBACK ─────────────────────────────────────────────
+    // In case config.env.php is missing, fallback to standard cPanel defaults
+    // However, creating config.env.php is highly recommended.
     define('DB_HOST', 'localhost');
     define('DB_USER', 'marketing');
     define('DB_PASS', 'marketing');
     define('DB_NAME', 'marketingandsite');
+    ini_set('display_errors', 0); // Hide errors on live site
 }
+
 
 try {
     // Connect to the detected database
@@ -183,7 +189,7 @@ try {
         `website_title` VARCHAR(255) NOT NULL DEFAULT 'DigiRare | NextGen IT & Software Solutions',
         `meta_title` VARCHAR(255) NULL,
         `meta_description` TEXT NULL,
-        `website_url` VARCHAR(255) NOT NULL DEFAULT 'http://localhost/myitcomapny',
+        `website_url` VARCHAR(255) NOT NULL DEFAULT 'https://siteandmarketing.com',
         `canonical_url` VARCHAR(255) NULL,
         `default_keywords` TEXT NULL,
         `author` VARCHAR(100) NOT NULL DEFAULT 'DigiRare Solutions',
@@ -352,7 +358,7 @@ try {
     VALUES (1, '{title} - DigiRare Technologies', 1, 1);");
 
     $pdo->exec("INSERT IGNORE INTO `robots_settings` (`id`, `robots_content`, `sitemap_url`) 
-    VALUES (1, \"User-agent: *\nAllow: /\nDisallow: /cms-dashboard/\nDisallow: /includes/\n\nSitemap: http://localhost/myitcomapny/sitemap.php\", 'http://localhost/myitcomapny/sitemap.php');");
+    VALUES (1, \"User-agent: *\nAllow: /\nDisallow: /cms-dashboard/\nDisallow: /includes/\n\nSitemap: https://siteandmarketing.com/sitemap.php\", 'https://siteandmarketing.com/sitemap.php');");
 
     $pdo->exec("INSERT IGNORE INTO `sitemap_settings` (`id`, `auto_generate`, `include_pages`, `include_blogs`, `include_services`, `include_projects`) 
     VALUES (1, 1, 1, 1, 1, 1);");

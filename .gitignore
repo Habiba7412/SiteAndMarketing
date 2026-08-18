@@ -1,0 +1,8 @@
+# Ignore configuration file with sensitive credentials
+config.env.php
+
+# Ignore macOS files
+.DS_Store
+
+# Log files
+*.log

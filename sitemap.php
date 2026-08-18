@@ -12,7 +12,7 @@ header('Content-Type: application/xml; charset=utf-8');
 $suite = getSeoSuiteFull($pdo);
 $pages = $suite['pages'];
 
-$baseUrl = rtrim($suite['global']['website_url'] ?? 'http://localhost/myitcomapny', '/');
+$baseUrl = rtrim($suite['global']['website_url'] ?? 'https://siteandmarketing.com', '/');
 
 echo '<?xml version="1.0" encoding="UTF-8"?>' . "\n";
 echo '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . "\n";

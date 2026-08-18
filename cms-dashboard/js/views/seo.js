@@ -217,7 +217,7 @@ const SeoView = {
     const title = activePage.meta_title || global.website_title || 'DigiRare Technologies | Enterprise Software & IT Solutions';
     const desc = activePage.meta_description || global.meta_description || 'We build next-generation software platforms, custom cloud backends, cybersecurity defense systems, and enterprise UI/UX applications.';
     const img = activePage.og_image || social.og_default_image || global.default_social_image || 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=1200&q=630';
-    const domain = global.website_url ? global.website_url.replace('http://', '').replace('https://', '') : 'localhost/myitcomapny';
+    const domain = global.website_url ? global.website_url.replace('http://', '').replace('https://', '') : 'siteandmarketing.com';
 
     switch (this.state.previewCard) {
       case 'facebook':
@@ -279,7 +279,7 @@ const SeoView = {
           <div class="p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-white font-sans text-slate-900 shadow-inner">
             <div class="flex items-center gap-2 mb-1.5 text-xs text-slate-600">
               <div class="w-4 h-4 rounded-full bg-slate-200 flex items-center justify-center text-[10px] text-slate-500 font-bold">G</div>
-              <span class="truncate max-w-[240px] text-slate-700">${global.website_url || 'http://localhost/myitcomapny'} › ${activePage.page_key || 'index.php'}</span>
+              <span class="truncate max-w-[240px] text-slate-700">${global.website_url || 'https://siteandmarketing.com'} › ${activePage.page_key || 'index.php'}</span>
             </div>
             <h4 id="serp-title-preview" class="text-lg font-medium text-blue-700 hover:underline cursor-pointer leading-tight mb-1 truncate">
               ${title}
@@ -602,7 +602,7 @@ const SeoView = {
           <form id="form-robots-seo" class="space-y-4 text-xs">
             <div>
               <label class="block font-semibold text-slate-700 dark:text-slate-300 mb-1">Robots.txt Content Editor</label>
-              <textarea name="robots_content" rows="6" class="w-full p-3 font-mono text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-900 text-emerald-400 focus:outline-none">${(data.robots && data.robots.robots_content) ? data.robots.robots_content : "User-agent: *\nAllow: /\nDisallow: /cms-dashboard/\nDisallow: /includes/\n\nSitemap: http://localhost/myitcomapny/sitemap.php"}</textarea>
+              <textarea name="robots_content" rows="6" class="w-full p-3 font-mono text-xs rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-900 text-emerald-400 focus:outline-none">${(data.robots && data.robots.robots_content) ? data.robots.robots_content : "User-agent: *\nAllow: /\nDisallow: /cms-dashboard/\nDisallow: /includes/\n\nSitemap: https://siteandmarketing.com/sitemap.php"}</textarea>
             </div>
 
             <div class="flex items-center justify-between p-4 rounded-xl border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/40">

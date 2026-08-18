@@ -85,7 +85,7 @@ if (!function_exists('checkSeoRedirects')) {
 
         // Base domain protocol & host
         $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https://' : 'http://';
-        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        $host = $_SERVER['HTTP_HOST'] ?? 'siteandmarketing.com';
         $currentUrl = $protocol . $host . ($_SERVER['REQUEST_URI'] ?? '');
 
         // Standard Default Merging Logic

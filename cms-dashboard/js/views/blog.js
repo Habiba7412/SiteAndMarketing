@@ -431,7 +431,7 @@ export const BlogView = {
           <div class="space-y-1">
             <div class="flex items-center justify-between">
               <label class="block font-bold text-slate-400 uppercase tracking-wider text-[10px]">Clean SEO URL Slug</label>
-              <span id="blog-url-preview" class="text-[10px] font-mono text-brand-600 dark:text-brand-400 truncate max-w-[280px]">http://localhost/myitcomapny/blog/${bSlug || 'where-does-it-come-from'}</span>
+              <span id="blog-url-preview" class="text-[10px] font-mono text-brand-600 dark:text-brand-400 truncate max-w-[280px]">https://siteandmarketing.com/blog/${bSlug || 'where-does-it-come-from'}</span>
             </div>
             <input type="text" id="edit-post-slug" value="${bSlug}" class="w-full glass-input p-2.5 rounded-xl font-mono text-[10px]" placeholder="where-does-it-come-from">
           </div>
@@ -671,7 +671,7 @@ export const BlogView = {
     const updateUrlPreview = () => {
       if (urlPreview && slugInput) {
         const currentSlug = slugInput.value.trim() || 'where-does-it-come-from';
-        urlPreview.textContent = `http://localhost/myitcomapny/blog/${currentSlug}`;
+        urlPreview.textContent = `https://siteandmarketing.com/blog/${currentSlug}`;
       }
     };
 
