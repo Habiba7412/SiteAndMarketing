@@ -118,11 +118,11 @@ include __DIR__ . '/includes/header.php';
                 <div class="lg:col-span-7 flex flex-col gap-6 text-left reveal-on-scroll">
                     <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-brand-accent/20 bg-brand-accent/5 w-fit">
                         <span class="w-2 h-2 rounded-full bg-brand-accent pulse-dot"></span>
-                        <span class="text-xs font-bold uppercase tracking-wider text-brand-accent font-heading"><?php echo htmlspecialchars($heroSubHeading); ?></span>
+                        <span class="text-xs font-bold uppercase tracking-wider text-brand-accent font-heading">siteandmarketing</span>
                     </div>
 
                     <h2 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
-                        <?php echo htmlspecialchars($heroHeadline); ?>
+                        Transforming Ideas Into Powerful Digital Solutions for Modern Businesses
                     </h2>
  
                     <p class="text-slate-300 text-lg md:text-xl max-w-xl leading-relaxed">
