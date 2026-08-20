@@ -24,13 +24,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         $name    = htmlspecialchars(trim($_POST['name'] ?? ''), ENT_QUOTES, 'UTF-8');
         $email   = filter_var(trim($_POST['email'] ?? ''), FILTER_VALIDATE_EMAIL);
         $service = htmlspecialchars(trim($_POST['service'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $businessName = htmlspecialchars(trim($_POST['business_name'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $phone = htmlspecialchars(trim($_POST['phone'] ?? ''), ENT_QUOTES, 'UTF-8');
+        $budgetRange = htmlspecialchars(trim($_POST['budget_range'] ?? ''), ENT_QUOTES, 'UTF-8');
         $message = htmlspecialchars(trim($_POST['message'] ?? ''), ENT_QUOTES, 'UTF-8');
         $subject = "Estimate Request: " . ($service ? ucfirst($service) : "General");
 
         if (!empty($name) && $email && !empty($message)) {
             try {
-                $stmt = $pdo->prepare("INSERT INTO `contact_submissions` (`name`, `email`, `subject`, `message`) VALUES (?, ?, ?, ?)");
-                $stmt->execute([$name, $email, $subject, $message]);
+                $stmt = $pdo->prepare("INSERT INTO `contact_submissions` (`name`, `email`, `subject`, `message`, `business_name`, `phone`, `service`, `budget_range`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$name, $email, $subject, $message, $businessName, $phone, $service, $budgetRange]);
                 $successMsg = "Your estimate request has been submitted! We will get back to you shortly.";
             } catch (PDOException $e) {
                 $errorMsg = "Error saving submission: " . $e->getMessage();
@@ -78,6 +81,27 @@ $checklistTitle = Setting::get('checklist_title', 'Modern Technology & Digital I
 $checklistDesc = Setting::get('checklist_desc', 'At Site And Marketing Technologies, we combine innovation, expertise, and the latest technologies to help businesses build secure, scalable, and future-ready digital solutions.');
 $checklistItems = json_decode(Setting::get('checklist_items', '[]'), true) ?: [];
 
+$whyChooseUsHeading = Setting::get('why_choose_us_heading', 'Why Choose Site And Marketing');
+$whyChooseUsDesc = Setting::get('why_choose_us_desc', '');
+$whyChooseUs = json_decode(Setting::get('why_choose_us', '[]'), true) ?: [];
+
+$processHeading = Setting::get('process_heading', 'Our Development Process');
+$processDesc = Setting::get('process_desc', '');
+$process = json_decode(Setting::get('process', '[]'), true) ?: [];
+
+$techHeading = Setting::get('tech_heading', 'Technologies We Use');
+$techDesc = Setting::get('tech_desc', '');
+$technologies = json_decode(Setting::get('technologies', '[]'), true) ?: [];
+
+$contactHeading = Setting::get('contact_heading', 'Let\'s Talk About Your Project');
+$contactDesc = Setting::get('contact_desc', '');
+
+$ctaHeading = Setting::get('cta_heading', 'Have a Project in Mind? Let\'s Build It.');
+$ctaDesc = Setting::get('cta_desc', '');
+$ctaPrimaryText = Setting::get('cta_primary_text', 'Start Your Project');
+$ctaPrimaryUrl = Setting::get('cta_primary_url', '#contact');
+$ctaSecondaryText = Setting::get('cta_secondary_text', 'Talk to Our Team');
+$ctaSecondaryUrl = Setting::get('cta_secondary_url', '#contact');
 
 include __DIR__ . '/includes/header.php';
 ?>
@@ -291,6 +315,109 @@ include __DIR__ . '/includes/header.php';
         </div>
     </section>
 
+    <!-- Why Choose Us Section -->
+    <?php if (!empty($whyChooseUs)): ?>
+    <section class="py-24 relative overflow-hidden bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4 reveal-on-scroll">
+                <span class="text-sm font-bold tracking-wider text-brand-accent uppercase font-heading">Our Advantage</span>
+                <h2 class="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+                    <?php echo htmlspecialchars($whyChooseUsHeading); ?>
+                </h2>
+                <?php if (!empty($whyChooseUsDesc)): ?>
+                <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                    <?php echo htmlspecialchars($whyChooseUsDesc); ?>
+                </p>
+                <?php endif; ?>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <?php $delay = 0; foreach ($whyChooseUs as $item): ?>
+                <div class="glass-panel rounded-3xl p-8 border border-white/5 flex flex-col gap-5 hover:border-brand-accent/30 transition-all duration-300 reveal-on-scroll <?php echo $delay > 0 ? 'delay-' . $delay : ''; ?>">
+                    <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent text-xl">
+                        <i class="fa-solid <?php echo htmlspecialchars($item['icon'] ?? 'fa-check'); ?>"></i>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-white mt-2"><?php echo htmlspecialchars($item['title'] ?? ''); ?></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed flex-grow">
+                        <?php echo htmlspecialchars($item['description'] ?? ''); ?>
+                    </p>
+                </div>
+                <?php $delay = ($delay + 100) % 300; endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- Our Process Section -->
+    <?php if (!empty($process)): ?>
+    <section class="py-24 relative overflow-hidden bg-brand-darker border-t border-slate-900/80">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4 reveal-on-scroll">
+                <span class="text-sm font-bold tracking-wider text-brand-accent uppercase font-heading">How We Work</span>
+                <h2 class="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+                    <?php echo htmlspecialchars($processHeading); ?>
+                </h2>
+                <?php if (!empty($processDesc)): ?>
+                <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                    <?php echo htmlspecialchars($processDesc); ?>
+                </p>
+                <?php endif; ?>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 relative">
+                <div class="hidden lg:block absolute top-1/2 left-0 w-full h-0.5 bg-slate-800 -translate-y-1/2 z-0"></div>
+                <?php $delay = 0; foreach ($process as $step): ?>
+                <div class="relative z-10 flex flex-col items-center text-center gap-4 reveal-on-scroll <?php echo $delay > 0 ? 'delay-' . $delay : ''; ?>">
+                    <div class="w-16 h-16 rounded-full bg-brand-darker border border-brand-accent/50 flex items-center justify-center text-brand-accent text-2xl shadow-xl shadow-brand-accent/10 relative">
+                        <i class="fa-solid <?php echo htmlspecialchars($step['icon'] ?? 'fa-gear'); ?>"></i>
+                        <span class="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-brand-accent text-brand-dark text-xs font-bold flex items-center justify-center"><?php echo htmlspecialchars($step['step'] ?? ''); ?></span>
+                    </div>
+                    <h3 class="font-heading font-bold text-lg text-white mt-4"><?php echo htmlspecialchars($step['title'] ?? ''); ?></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        <?php echo htmlspecialchars($step['description'] ?? ''); ?>
+                    </p>
+                </div>
+                <?php $delay = ($delay + 100) % 400; endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
+    <!-- Technologies Section -->
+    <?php if (!empty($technologies)): ?>
+    <section class="py-24 relative overflow-hidden bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4 reveal-on-scroll">
+                <span class="text-sm font-bold tracking-wider text-brand-accent uppercase font-heading">Tech Stack</span>
+                <h2 class="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+                    <?php echo htmlspecialchars($techHeading); ?>
+                </h2>
+                <?php if (!empty($techDesc)): ?>
+                <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                    <?php echo htmlspecialchars($techDesc); ?>
+                </p>
+                <?php endif; ?>
+            </div>
+
+            <div class="flex flex-wrap justify-center gap-4 reveal-on-scroll">
+                <?php foreach ($technologies as $tech): ?>
+                <div class="flex items-center gap-3 px-6 py-3 rounded-xl border border-slate-800 bg-brand-darker hover:border-brand-accent/50 hover:bg-slate-800/50 transition-all duration-300">
+                    <?php if (!empty($tech['logo'])): ?>
+                    <img src="<?php echo htmlspecialchars($tech['logo']); ?>" alt="<?php echo htmlspecialchars($tech['name'] ?? ''); ?>" class="w-6 h-6 object-contain">
+                    <?php else: ?>
+                    <i class="fa-solid fa-code text-brand-accent"></i>
+                    <?php endif; ?>
+                    <div>
+                        <span class="font-heading font-bold text-sm text-white block"><?php echo htmlspecialchars($tech['name'] ?? ''); ?></span>
+                        <span class="text-[10px] text-slate-500 uppercase tracking-wider block"><?php echo htmlspecialchars($tech['category'] ?? 'Technology'); ?></span>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
     <!-- Premium Digital Services Section -->
     <section class="py-24 relative overflow-hidden">
         <div class="glow-bg top-0 left-10"></div>
@@ -369,17 +496,19 @@ include __DIR__ . '/includes/header.php';
         
         <div class="max-w-4xl mx-auto px-6 relative z-10 text-center flex flex-col items-center gap-8 reveal-on-scroll">
             <h2 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
-                Ready to Transform <br class="hidden sm:inline"> Your Business?
+                <?php echo htmlspecialchars($ctaHeading); ?>
             </h2>
+            <?php if (!empty($ctaDesc)): ?>
             <p class="text-slate-300 text-lg md:text-xl max-w-2xl leading-relaxed">
-                Let's build innovative digital solutions that help your business grow faster, reach more customers, and stay ahead of the competition.
+                <?php echo htmlspecialchars($ctaDesc); ?>
             </p>
+            <?php endif; ?>
             <div class="flex flex-col sm:flex-row gap-4 mt-4 w-full sm:w-auto justify-center">
-                <a href="contact.php" class="px-8 py-4 rounded-full font-heading font-bold text-center text-brand-dark bg-gradient-to-r from-brand-accent via-cyan-400 to-emerald-400 hover:shadow-xl hover:shadow-brand-accent/20 hover:scale-[1.02] transition-all">
-                    GET YOUR WEBSITE NOW
+                <a href="<?php echo htmlspecialchars($ctaPrimaryUrl); ?>" class="px-8 py-4 rounded-full font-heading font-bold text-center text-brand-dark bg-gradient-to-r from-brand-accent via-cyan-400 to-emerald-400 hover:shadow-xl hover:shadow-brand-accent/20 hover:scale-[1.02] transition-all">
+                    <?php echo htmlspecialchars($ctaPrimaryText); ?>
                 </a>
-                <a href="contact.php" class="px-8 py-4 rounded-full font-heading font-bold text-center border border-slate-700 hover:border-slate-500 hover:bg-white/5 transition-all text-white flex items-center justify-center gap-2">
-                    <span>GET YOUR WEBSITE NOW</span>
+                <a href="<?php echo htmlspecialchars($ctaSecondaryUrl); ?>" class="px-8 py-4 rounded-full font-heading font-bold text-center border border-slate-700 hover:border-slate-500 hover:bg-white/5 transition-all text-white flex items-center justify-center gap-2">
+                    <span><?php echo htmlspecialchars($ctaSecondaryText); ?></span>
                     <i class="fa-solid fa-arrow-right text-xs text-brand-accent"></i>
                 </a>
             </div>
@@ -593,6 +722,42 @@ include __DIR__ . '/includes/header.php';
         </div>
     </section>
 
+    <!-- FAQs Section -->
+    <?php if (!empty($faqs)): ?>
+    <section class="py-24 relative overflow-hidden bg-brand-darker border-t border-slate-900/80">
+        <div class="glow-bg top-20 left-20"></div>
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <div class="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4 reveal-on-scroll">
+                <span class="text-sm font-bold tracking-wider text-brand-accent uppercase font-heading">Got Questions?</span>
+                <h2 class="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+                    Frequently Asked Questions
+                </h2>
+                <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                    Find answers to some of our most common questions about our services, process, and pricing.
+                </p>
+            </div>
+
+            <div class="max-w-4xl mx-auto flex flex-col gap-4">
+                <?php $delay = 0; foreach ($faqs as $index => $faq): ?>
+                <div class="faq-item glass-panel rounded-2xl border border-white/5 overflow-hidden reveal-on-scroll <?php echo $delay > 0 ? 'delay-' . $delay : ''; ?>">
+                    <button class="faq-toggle w-full px-6 py-5 text-left flex items-center justify-between gap-4 group">
+                        <span class="font-heading font-bold text-lg text-white group-hover:text-brand-accent transition-colors"><?php echo htmlspecialchars($faq['question']); ?></span>
+                        <span class="w-8 h-8 rounded-full bg-brand-darker border border-slate-800 flex items-center justify-center text-slate-400 group-hover:bg-brand-accent/10 group-hover:text-brand-accent group-hover:border-brand-accent/30 transition-all shrink-0 faq-icon">
+                            <i class="fa-solid fa-plus text-xs transition-transform duration-300"></i>
+                        </span>
+                    </button>
+                    <div class="faq-content hidden px-6 pb-6 pt-0">
+                        <p class="text-slate-400 leading-relaxed text-sm">
+                            <?php echo nl2br(htmlspecialchars($faq['answer'])); ?>
+                        </p>
+                    </div>
+                </div>
+                <?php $delay = ($delay + 100) % 500; endforeach; ?>
+            </div>
+        </div>
+    </section>
+    <?php endif; ?>
+
     <!-- Estimate & Free Project Analysis Form Section -->
     <section class="py-24 relative overflow-hidden bg-brand-darker">
         <div class="glow-bg top-20 right-20"></div>
@@ -602,10 +767,10 @@ include __DIR__ . '/includes/header.php';
                 <div class="lg:col-span-6 flex flex-col gap-6">
                     <span class="text-sm font-bold tracking-wider text-brand-accent uppercase font-heading font-medium">Start Collaborating</span>
                     <h2 class="font-heading font-black text-4xl sm:text-5xl text-white leading-tight">
-                        Let's Work For Your Next Projects!
+                        <?php echo htmlspecialchars($contactHeading); ?>
                     </h2>
                     <p class="text-slate-400 text-lg leading-relaxed">
-                        Ready to scale your business infrastructure? Reach out to our specialist engineering teams. We analyze your targets and create modular blueprints built for high loads.
+                        <?php echo htmlspecialchars($contactDesc); ?>
                     </p>
                     <div class="flex items-center gap-4 mt-2">
                         <div class="w-12 h-12 rounded-full bg-brand-accent/15 flex items-center justify-center text-brand-accent">
@@ -626,27 +791,54 @@ include __DIR__ . '/includes/header.php';
                         <form action="index.php" method="POST" id="estimate-form" class="flex flex-col gap-4">
                             <input type="hidden" name="action" value="submit_estimate">
                             <input type="hidden" name="csrf_token" value="<?php echo htmlspecialchars($_SESSION['csrf_token']); ?>">
-                            <div>
-                                <label for="form-name" class="sr-only">Full Name</label>
-                                <input type="text" name="name" id="form-name" placeholder="Full Name" required class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-accent text-sm">
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="form-name" class="sr-only">Full Name</label>
+                                    <input type="text" name="name" id="form-name" placeholder="Full Name *" required class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-accent text-sm">
+                                </div>
+                                <div>
+                                    <label for="form-email" class="sr-only">Email Address</label>
+                                    <input type="email" name="email" id="form-email" placeholder="Email Address *" required class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-accent text-sm">
+                                </div>
                             </div>
-                            <div>
-                                <label for="form-email" class="sr-only">Email Address</label>
-                                <input type="email" name="email" id="form-email" placeholder="Email Address" required class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-accent text-sm">
+                            
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="form-business" class="sr-only">Business Name</label>
+                                    <input type="text" name="business_name" id="form-business" placeholder="Business / Company" class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-accent text-sm">
+                                </div>
+                                <div>
+                                    <label for="form-phone" class="sr-only">Phone Number</label>
+                                    <input type="tel" name="phone" id="form-phone" placeholder="Phone Number" class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-accent text-sm">
+                                </div>
                             </div>
-                            <div>
-                                <label for="form-service" class="sr-only">Select Service</label>
-                                <select name="service" id="form-service" class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-brand-accent text-sm">
-                                    <option value="" disabled selected class="text-slate-600">Select Service Required</option>
-                                    <option value="consulting">IT Consultation</option>
-                                    <option value="cybersecurity">Cyber Security</option>
-                                    <option value="software">Software Engineering</option>
-                                    <option value="cloud">Cloud Integration</option>
-                                </select>
+
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="form-service" class="sr-only">Select Service</label>
+                                    <select name="service" id="form-service" class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-brand-accent text-sm">
+                                        <option value="" disabled selected class="text-slate-600">Service Required</option>
+                                        <?php foreach ($servicesList as $svc): ?>
+                                            <option value="<?php echo htmlspecialchars($svc['title']); ?>"><?php echo htmlspecialchars($svc['title']); ?></option>
+                                        <?php endforeach; ?>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="form-budget" class="sr-only">Budget Range</label>
+                                    <select name="budget_range" id="form-budget" class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 focus:outline-none focus:border-brand-accent text-sm">
+                                        <option value="" disabled selected class="text-slate-600">Budget Range</option>
+                                        <option value="<$5k">Less than $5,000</option>
+                                        <option value="$5k-$10k">$5,000 - $10,000</option>
+                                        <option value="$10k-$25k">$10,000 - $25,000</option>
+                                        <option value="$25k+">$25,000+</option>
+                                    </select>
+                                </div>
                             </div>
+                            
                             <div>
                                 <label for="form-message" class="sr-only">Brief Description</label>
-                                <textarea name="message" id="form-message" rows="3" placeholder="Briefly describe your project details..." required class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-accent text-sm resize-none"></textarea>
+                                <textarea name="message" id="form-message" rows="3" placeholder="Briefly describe your project details... *" required class="w-full bg-brand-dark/50 border border-slate-800 rounded-xl px-4 py-3 text-slate-100 placeholder-slate-500 focus:outline-none focus:border-brand-accent text-sm resize-none"></textarea>
                             </div>
                             
                             <button type="submit" class="mt-2 w-full py-4 rounded-xl font-heading font-bold text-center text-brand-dark bg-gradient-to-r from-brand-accent via-cyan-400 to-emerald-400 hover:shadow-lg hover:shadow-brand-accent/20 hover:scale-[1.01] transition-all">
@@ -768,6 +960,32 @@ include __DIR__ . '/includes/header.php';
                             card.style.display = 'none';
                         }
                     });
+                });
+            });
+
+            // FAQ Accordion
+            const faqToggles = document.querySelectorAll('.faq-toggle');
+            faqToggles.forEach(toggle => {
+                toggle.addEventListener('click', () => {
+                    const content = toggle.nextElementSibling;
+                    const icon = toggle.querySelector('i');
+                    
+                    // Close all other FAQs
+                    document.querySelectorAll('.faq-content').forEach(c => {
+                        if (c !== content && !c.classList.contains('hidden')) {
+                            c.classList.add('hidden');
+                            c.previousElementSibling.querySelector('i').classList.replace('fa-minus', 'fa-plus');
+                        }
+                    });
+
+                    // Toggle current FAQ
+                    if (content.classList.contains('hidden')) {
+                        content.classList.remove('hidden');
+                        icon.classList.replace('fa-plus', 'fa-minus');
+                    } else {
+                        content.classList.add('hidden');
+                        icon.classList.replace('fa-minus', 'fa-plus');
+                    }
                 });
             });
         });

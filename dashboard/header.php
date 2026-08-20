@@ -152,6 +152,27 @@ try {
                     </div>
                 </a>
 
+                <a href="team.php" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all <?php echo ($currentPage == 'team.php') ? 'bg-brand-accent/10 text-brand-accent border border-brand-accent/20' : 'text-slate-400 hover:bg-slate-800/30 hover:text-slate-200 border border-transparent'; ?>">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-users text-base"></i>
+                        <span>Team Members</span>
+                    </div>
+                </a>
+
+                <a href="testimonials.php" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all <?php echo ($currentPage == 'testimonials.php') ? 'bg-brand-accent/10 text-brand-accent border border-brand-accent/20' : 'text-slate-400 hover:bg-slate-800/30 hover:text-slate-200 border border-transparent'; ?>">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-comments text-base"></i>
+                        <span>Testimonials</span>
+                    </div>
+                </a>
+
+                <a href="faqs.php" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all <?php echo ($currentPage == 'faqs.php') ? 'bg-brand-accent/10 text-brand-accent border border-brand-accent/20' : 'text-slate-400 hover:bg-slate-800/30 hover:text-slate-200 border border-transparent'; ?>">
+                    <div class="flex items-center gap-3">
+                        <i class="fa-solid fa-circle-question text-base"></i>
+                        <span>FAQs</span>
+                    </div>
+                </a>
+
                 <a href="blogs.php" class="flex items-center justify-between px-4 py-3 rounded-xl transition-all <?php echo ($currentPage == 'blogs.php') ? 'bg-brand-accent/10 text-brand-accent border border-brand-accent/20' : 'text-slate-400 hover:bg-slate-800/30 hover:text-slate-200 border border-transparent'; ?>">
                     <div class="flex items-center gap-3">
                         <i class="fa-solid fa-blog text-base"></i>

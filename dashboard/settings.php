@@ -29,7 +29,30 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         'hero_supporting_text',
         'what_we_build_heading',
         'what_we_build_desc',
-        'what_we_build'
+        'what_we_build',
+        'testimonial_heading',
+        'client_logos',
+        'checklist_title',
+        'checklist_desc',
+        'marquee_texts',
+        'checklist_items',
+        'why_choose_us_heading',
+        'why_choose_us_desc',
+        'why_choose_us',
+        'process_heading',
+        'process_desc',
+        'process',
+        'tech_heading',
+        'tech_desc',
+        'technologies',
+        'contact_heading',
+        'contact_desc',
+        'cta_heading',
+        'cta_desc',
+        'cta_primary_text',
+        'cta_primary_url',
+        'cta_secondary_text',
+        'cta_secondary_url'
     ];
     
     // File upload for website logo
@@ -331,6 +354,86 @@ require_once __DIR__ . '/header.php';
                         ], JSON_PRETTY_PRINT);
                         ?>
                         <textarea name="checklist_items" rows="6" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors resize-y"><?php echo htmlspecialchars($settings['checklist_items'] ?? $defaultChecklist); ?></textarea>
+                    </div>
+
+                    <!-- Why Choose Us -->
+                    <div class="mt-4 pt-4 border-t border-slate-800/50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Why Choose Us Heading</label>
+                                <input type="text" name="why_choose_us_heading" value="<?php echo htmlspecialchars($settings['why_choose_us_heading'] ?? 'Why Choose Site And Marketing'); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Why Choose Us Desc</label>
+                                <input type="text" name="why_choose_us_desc" value="<?php echo htmlspecialchars($settings['why_choose_us_desc'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            </div>
+                        </div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Why Choose Us Items (JSON)</label>
+                        <textarea name="why_choose_us" rows="4" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors resize-y" placeholder='[{"title":"Expert Team", "description":"...", "icon":"fa-solid fa-star"}]'><?php echo htmlspecialchars($settings['why_choose_us'] ?? ''); ?></textarea>
+                    </div>
+
+                    <!-- Process -->
+                    <div class="mt-4 pt-4 border-t border-slate-800/50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Process Heading</label>
+                                <input type="text" name="process_heading" value="<?php echo htmlspecialchars($settings['process_heading'] ?? 'Our Development Process'); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Process Desc</label>
+                                <input type="text" name="process_desc" value="<?php echo htmlspecialchars($settings['process_desc'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            </div>
+                        </div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Process Steps (JSON)</label>
+                        <textarea name="process" rows="4" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors resize-y" placeholder='[{"step":"01", "title":"Discovery", "description":"...", "icon":"fa-lightbulb"}]'><?php echo htmlspecialchars($settings['process'] ?? ''); ?></textarea>
+                    </div>
+
+                    <!-- Technologies -->
+                    <div class="mt-4 pt-4 border-t border-slate-800/50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Tech Stack Heading</label>
+                                <input type="text" name="tech_heading" value="<?php echo htmlspecialchars($settings['tech_heading'] ?? 'Technologies We Use'); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Tech Stack Desc</label>
+                                <input type="text" name="tech_desc" value="<?php echo htmlspecialchars($settings['tech_desc'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            </div>
+                        </div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Technologies (JSON)</label>
+                        <textarea name="technologies" rows="4" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors resize-y" placeholder='[{"name":"React", "category":"Frontend", "logo":"react.svg"}]'><?php echo htmlspecialchars($settings['technologies'] ?? ''); ?></textarea>
+                    </div>
+
+                    <!-- Contact & CTA -->
+                    <div class="mt-4 pt-4 border-t border-slate-800/50">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Contact Section Heading</label>
+                                <input type="text" name="contact_heading" value="<?php echo htmlspecialchars($settings['contact_heading'] ?? 'Let\'s Talk About Your Project'); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Contact Desc</label>
+                                <input type="text" name="contact_desc" value="<?php echo htmlspecialchars($settings['contact_desc'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Final CTA Heading</label>
+                                <input type="text" name="cta_heading" value="<?php echo htmlspecialchars($settings['cta_heading'] ?? 'Have a Project in Mind? Let\'s Build It.'); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            </div>
+                            <div>
+                                <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Final CTA Desc</label>
+                                <input type="text" name="cta_desc" value="<?php echo htmlspecialchars($settings['cta_desc'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <input type="text" name="cta_primary_text" value="<?php echo htmlspecialchars($settings['cta_primary_text'] ?? 'Start Your Project'); ?>" placeholder="Primary Btn Text" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors">
+                            <input type="text" name="cta_primary_url" value="<?php echo htmlspecialchars($settings['cta_primary_url'] ?? '#contact'); ?>" placeholder="Primary Btn URL" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors">
+                            <input type="text" name="cta_secondary_text" value="<?php echo htmlspecialchars($settings['cta_secondary_text'] ?? 'Talk to Our Team'); ?>" placeholder="Secondary Btn Text" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors">
+                            <input type="text" name="cta_secondary_url" value="<?php echo htmlspecialchars($settings['cta_secondary_url'] ?? '#contact'); ?>" placeholder="Secondary Btn URL" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
                     </div>
                 </div>
             </div>

@@ -84,19 +84,42 @@ require_once __DIR__ . '/header.php';
                         <div class="border-b border-slate-800 pb-4">
                             <span class="text-[10px] text-slate-500 font-bold block">FROM SENDER</span>
                             <h4 class="font-heading font-bold text-lg text-white mt-1"><?php echo htmlspecialchars($viewMsg['name']); ?></h4>
-                            <a href="mailto:<?php echo htmlspecialchars($viewMsg['email']); ?>" class="text-xs text-brand-accent hover:underline flex items-center gap-1.5 mt-1 font-mono">
-                                <i class="fa-solid fa-envelope text-[10px]"></i>
-                                <span><?php echo htmlspecialchars($viewMsg['email']); ?></span>
-                            </a>
+                            
+                            <?php if (!empty($viewMsg['business_name'])): ?>
+                            <span class="text-xs text-slate-400 font-semibold block mt-1"><i class="fa-solid fa-building text-[10px] mr-1"></i> <?php echo htmlspecialchars($viewMsg['business_name']); ?></span>
+                            <?php endif; ?>
+
+                            <div class="flex flex-col gap-1 mt-2">
+                                <a href="mailto:<?php echo htmlspecialchars($viewMsg['email']); ?>" class="text-xs text-brand-accent hover:underline flex items-center gap-1.5 font-mono">
+                                    <i class="fa-solid fa-envelope text-[10px]"></i>
+                                    <span><?php echo htmlspecialchars($viewMsg['email']); ?></span>
+                                </a>
+                                <?php if (!empty($viewMsg['phone'])): ?>
+                                <a href="tel:<?php echo htmlspecialchars($viewMsg['phone']); ?>" class="text-xs text-brand-accent hover:underline flex items-center gap-1.5 font-mono">
+                                    <i class="fa-solid fa-phone text-[10px]"></i>
+                                    <span><?php echo htmlspecialchars($viewMsg['phone']); ?></span>
+                                </a>
+                                <?php endif; ?>
+                            </div>
+
                             <span class="text-[10px] text-slate-500 font-semibold block mt-3">Date: <?php echo date('M d, Y H:i:s', strtotime($viewMsg['created_at'])); ?></span>
                         </div>
 
                         <!-- Subject & Content -->
                         <div>
-                            <span class="text-[10px] text-slate-500 font-bold block">SUBJECT</span>
-                            <p class="font-heading font-bold text-sm text-white mt-1 leading-relaxed"><?php echo htmlspecialchars($viewMsg['subject']); ?></p>
+                            <span class="text-[10px] text-slate-500 font-bold block">SUBJECT / SERVICE</span>
+                            <p class="font-heading font-bold text-sm text-white mt-1 leading-relaxed">
+                                <?php echo htmlspecialchars($viewMsg['service'] ?: $viewMsg['subject']); ?>
+                            </p>
                             
-                            <span class="text-[10px] text-slate-500 font-bold block mt-6">MESSAGE TEXT</span>
+                            <?php if (!empty($viewMsg['budget_range'])): ?>
+                            <span class="text-[10px] text-slate-500 font-bold block mt-4">BUDGET RANGE</span>
+                            <p class="font-heading font-bold text-sm text-emerald-400 mt-1 leading-relaxed">
+                                <?php echo htmlspecialchars($viewMsg['budget_range']); ?>
+                            </p>
+                            <?php endif; ?>
+
+                            <span class="text-[10px] text-slate-500 font-bold block mt-6">PROJECT DESCRIPTION</span>
                             <div class="p-4 rounded-2xl bg-brand-dark/40 border border-slate-850 mt-1.5 text-xs text-slate-300 leading-relaxed font-mono whitespace-pre-wrap">
                                 <?php echo htmlspecialchars($viewMsg['message']); ?>
                             </div>

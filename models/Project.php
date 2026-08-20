@@ -42,24 +42,24 @@ class Project extends BaseModel {
     public static function create($data) {
         $db = self::getDB();
         $slug = $data['slug'] ?? self::makeSlug($data['title']);
-        $stmt = $db->prepare("INSERT INTO `projects` (`title`, `slug`, `category`, `image_url`, `client`, `year`, `tags`, `project_date`, `link`, `description`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt = $db->prepare("INSERT INTO `projects` (`title`, `project_type`, `slug`, `category`, `industry`, `image_url`, `client`, `year`, `tags`, `project_date`, `link`, `description`, `features`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         return $stmt->execute([
-            $data['title'], $slug, $data['category'], $data['image_url'] ?? '',
-            $data['client'] ?? '', $data['year'] ?? date('Y'),
+            $data['title'], $data['project_type'] ?? 'Client Project', $slug, $data['category'], $data['industry'] ?? '', 
+            $data['image_url'] ?? '', $data['client'] ?? '', $data['year'] ?? date('Y'),
             $data['tags'] ?? '', $data['project_date'] ?? null,
-            $data['link'] ?? '#', $data['description'], $data['status'] ?? 'published'
+            $data['link'] ?? '#', $data['description'], $data['features'] ?? '', $data['status'] ?? 'published'
         ]);
     }
 
     public static function update($id, $data) {
         $db = self::getDB();
-        $stmt = $db->prepare("UPDATE `projects` SET `title`=?, `slug`=?, `category`=?, `image_url`=?, `client`=?, `year`=?, `tags`=?, `project_date`=?, `link`=?, `description`=?, `status`=? WHERE `id`=?");
+        $stmt = $db->prepare("UPDATE `projects` SET `title`=?, `project_type`=?, `slug`=?, `category`=?, `industry`=?, `image_url`=?, `client`=?, `year`=?, `tags`=?, `project_date`=?, `link`=?, `description`=?, `features`=?, `status`=? WHERE `id`=?");
         return $stmt->execute([
-            $data['title'], $data['slug'] ?? self::makeSlug($data['title']),
-            $data['category'], $data['image_url'] ?? '',
+            $data['title'], $data['project_type'] ?? 'Client Project', $data['slug'] ?? self::makeSlug($data['title']),
+            $data['category'], $data['industry'] ?? '', $data['image_url'] ?? '',
             $data['client'] ?? '', $data['year'] ?? date('Y'),
             $data['tags'] ?? '', $data['project_date'] ?? null,
-            $data['link'] ?? '#', $data['description'], $data['status'] ?? 'published', $id
+            $data['link'] ?? '#', $data['description'], $data['features'] ?? '', $data['status'] ?? 'published', $id
         ]);
     }
 

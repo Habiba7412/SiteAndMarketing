@@ -26,12 +26,15 @@ if ($action === 'delete' && $id > 0) {
 // Handle Add/Edit Form submissions
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $title = trim($_POST['title'] ?? '');
+    $project_type = trim($_POST['project_type'] ?? 'Client Project');
     $category = trim($_POST['category'] ?? '');
+    $industry = trim($_POST['industry'] ?? '');
     $image_url = trim($_POST['image_url'] ?? '');
     $client = trim($_POST['client'] ?? '');
     $project_date = trim($_POST['project_date'] ?? '');
     $link = trim($_POST['link'] ?? '#');
     $description = trim($_POST['description'] ?? '');
+    $features = trim($_POST['features'] ?? '');
     $status = trim($_POST['status'] ?? 'published');
     
     if (empty($project_date)) {
@@ -41,13 +44,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (!empty($title) && !empty($category) && !empty($image_url) && !empty($description)) {
         try {
             if ($action === 'add') {
-                $stmt = $pdo->prepare("INSERT INTO `projects` (`title`, `category`, `image_url`, `client`, `project_date`, `link`, `description`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-                $stmt->execute([$title, $category, $image_url, $client, $project_date, $link, $description, $status]);
+                $stmt = $pdo->prepare("INSERT INTO `projects` (`title`, `project_type`, `category`, `industry`, `image_url`, `client`, `project_date`, `link`, `description`, `features`, `status`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+                $stmt->execute([$title, $project_type, $category, $industry, $image_url, $client, $project_date, $link, $description, $features, $status]);
                 header("Location: projects.php?success=" . urlencode("Project published successfully."));
                 exit();
             } elseif ($action === 'edit' && $id > 0) {
-                $stmt = $pdo->prepare("UPDATE `projects` SET `title` = ?, `category` = ?, `image_url` = ?, `client` = ?, `project_date` = ?, `link` = ?, `description` = ?, `status` = ? WHERE `id` = ?");
-                $stmt->execute([$title, $category, $image_url, $client, $project_date, $link, $description, $status, $id]);
+                $stmt = $pdo->prepare("UPDATE `projects` SET `title` = ?, `project_type` = ?, `category` = ?, `industry` = ?, `image_url` = ?, `client` = ?, `project_date` = ?, `link` = ?, `description` = ?, `features` = ?, `status` = ? WHERE `id` = ?");
+                $stmt->execute([$title, $project_type, $category, $industry, $image_url, $client, $project_date, $link, $description, $features, $status, $id]);
                 header("Location: projects.php?success=" . urlencode("Project updated successfully."));
                 exit();
             }
@@ -124,12 +127,29 @@ require_once __DIR__ . '/header.php';
                         </div>
 
                         <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2">Project Type</label>
+                            <select name="project_type" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors">
+                                <option value="Client Project" <?php echo (isset($editProj['project_type']) && $editProj['project_type'] === 'Client Project') ? 'selected' : ''; ?>>Client Project</option>
+                                <option value="Featured Demo Project" <?php echo (isset($editProj['project_type']) && $editProj['project_type'] === 'Featured Demo Project') ? 'selected' : ''; ?>>Featured Demo Project</option>
+                                <option value="Concept Project" <?php echo (isset($editProj['project_type']) && $editProj['project_type'] === 'Concept Project') ? 'selected' : ''; ?>>Concept Project</option>
+                                <option value="Internal Project" <?php echo (isset($editProj['project_type']) && $editProj['project_type'] === 'Internal Project') ? 'selected' : ''; ?>>Internal Project</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
                             <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2">Category *</label>
                             <select name="category" required class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-3 text-xs text-slate-100 focus:outline-none focus:border-brand-accent transition-colors">
                                 <option value="Software Engineering" <?php echo (isset($editProj['category']) && $editProj['category'] === 'Software Engineering') ? 'selected' : ''; ?>>Software Engineering</option>
                                 <option value="UI / UX Design" <?php echo (isset($editProj['category']) && $editProj['category'] === 'UI / UX Design') ? 'selected' : ''; ?>>UI / UX Design</option>
                                 <option value="Cloud / DevOps" <?php echo (isset($editProj['category']) && $editProj['category'] === 'Cloud / DevOps') ? 'selected' : ''; ?>>Cloud / DevOps</option>
                             </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2">Industry</label>
+                            <input type="text" name="industry" value="<?php echo htmlspecialchars($editProj['industry'] ?? ''); ?>" placeholder="e.g. Healthcare, E-Commerce" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-3 text-xs text-slate-100 placeholder-slate-650 focus:outline-none focus:border-brand-accent transition-colors">
                         </div>
                     </div>
 
@@ -161,6 +181,11 @@ require_once __DIR__ . '/header.php';
                     <div>
                         <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2">Case Study Description *</label>
                         <textarea name="description" rows="4" required placeholder="Write a short summary detailed about this project scope..." class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-3 text-xs text-slate-100 placeholder-slate-650 focus:outline-none focus:border-brand-accent transition-colors resize-none"><?php echo htmlspecialchars($editProj['description'] ?? ''); ?></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-2">Key Features & Technology (Line separated)</label>
+                        <textarea name="features" rows="4" placeholder="Built with React&#10;Stripe Payment Gateway&#10;Real-time dashboard" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-3 text-xs text-slate-100 placeholder-slate-650 focus:outline-none focus:border-brand-accent transition-colors resize-none"><?php echo htmlspecialchars($editProj['features'] ?? ''); ?></textarea>
                     </div>
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">

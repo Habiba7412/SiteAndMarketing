@@ -17,8 +17,18 @@ class Contact extends BaseModel {
 
     public static function create($data) {
         $db = self::getDB();
-        $stmt = $db->prepare("INSERT INTO `contact_submissions` (`name`, `email`, `subject`, `message`, `is_read`) VALUES (?, ?, ?, ?, ?)");
-        return $stmt->execute([$data['name'], $data['email'], $data['subject'], $data['message'], $data['is_read'] ?? 0]);
+        $stmt = $db->prepare("INSERT INTO `contact_submissions` (`name`, `business_name`, `email`, `phone`, `service`, `budget_range`, `subject`, `message`, `is_read`) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        return $stmt->execute([
+            $data['name'], 
+            $data['business_name'] ?? '', 
+            $data['email'], 
+            $data['phone'] ?? '', 
+            $data['service'] ?? '', 
+            $data['budget_range'] ?? '', 
+            $data['subject'] ?? 'Website Inquiry', 
+            $data['message'], 
+            $data['is_read'] ?? 0
+        ]);
     }
 
     public static function updateStatus($id, $isRead) {
