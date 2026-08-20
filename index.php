@@ -53,7 +53,7 @@ $testimonials  = Testimonial::getAll('published');
 $faqs          = Faq::getAll('published');
 
 // Fetch hero & about content from settings
-$heroSubHeading = Setting::get('hero_sub_heading', 'NextGen Software Innovators');
+$heroSubHeading = Setting::get('hero_sub_heading', 'siteandmarketing');
 $heroHeadline   = Setting::get('hero_headline', 'Transforming Ideas Into Powerful Digital Solutions');
 $heroDesc       = Setting::get('hero_description', 'We empower startups and enterprises with innovative software development.');
 $heroBtnText1   = Setting::get('hero_btn_text_1', 'Get Started Today');
@@ -121,9 +121,9 @@ include __DIR__ . '/includes/header.php';
                         <span class="text-xs font-bold uppercase tracking-wider text-brand-accent font-heading"><?php echo htmlspecialchars($heroSubHeading); ?></span>
                     </div>
 
-                    <h1 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
+                    <h2 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
                         <?php echo htmlspecialchars($heroHeadline); ?>
-                    </h1>
+                    </h2>
  
                     <p class="text-slate-300 text-lg md:text-xl max-w-xl leading-relaxed">
                         <?php echo htmlspecialchars($heroDesc); ?>
@@ -233,12 +233,12 @@ include __DIR__ . '/includes/header.php';
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
                 <!-- Left side content -->
                 <div class="lg:col-span-6 flex flex-col gap-6 reveal-on-scroll">
-                    <span class="text-sm font-bold tracking-wider text-brand-accent uppercase font-heading">Innovate & Grow</span>
+                    <span class="text-sm font-bold tracking-wider text-brand-accent uppercase font-heading"><?php echo htmlspecialchars($aboutSubTitle); ?></span>
                     <h2 class="font-heading font-extrabold text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
-                        Innovate Soft Solutions to Grow Tech Business
+                        <?php echo htmlspecialchars($aboutTitle); ?>
                     </h2>
                     <p class="text-slate-400 text-lg leading-relaxed">
-                        Our customized software frameworks are designed to resolve real-world operations limitations. We collaborate with you to build scalable platforms that increase productivity, eliminate overheads, and secure user data.
+                        <?php echo htmlspecialchars($aboutDesc); ?>
                     </p>
                     
                     <div class="mt-4">
@@ -255,7 +255,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="lg:col-span-6 relative reveal-on-scroll delay-200">
                     <div class="grid grid-cols-12 gap-4 items-center">
                         <div class="col-span-8 rounded-2xl overflow-hidden border border-white/5 shadow-2xl relative z-10">
-                            <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=700&q=80" alt="Tech Collaboration" class="w-full object-cover aspect-[4/3] grayscale hover:grayscale-0 transition-all duration-500">
+                            <img src="<?php echo htmlspecialchars($aboutImage); ?>" alt="<?php echo htmlspecialchars($aboutTitle); ?>" class="w-full object-cover aspect-[4/3] grayscale hover:grayscale-0 transition-all duration-500">
                         </div>
                         </div>
                     </div>

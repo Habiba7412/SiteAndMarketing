@@ -24,9 +24,7 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     background: #1e293b;
     border-radius: 4px;
 }
-::-webkit-scrollbar-thumb:hover {
-    background: #38bdf8;
-}
+
 
 /* Glassmorphism Styles */
 .glass-panel {

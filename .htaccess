@@ -3,7 +3,7 @@
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
-    RewriteBase /myitcomapny/
+    RewriteBase /
 
     # Do not rewrite existing physical files or directories
     RewriteCond %{REQUEST_FILENAME} -f [OR]

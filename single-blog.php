@@ -32,7 +32,7 @@ $latestPosts  = Blog::getPublished(4);
 // Prepare Dynamic Blog SEO metadata
 $protocol = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https://' : 'http://';
 $host = $_SERVER['HTTP_HOST'] ?? 'siteandmarketing.com';
-$cleanBlogUrl = $protocol . $host . '/myitcomapny/blog/' . rawurlencode($slug);
+$cleanBlogUrl = $protocol . $host . '/blog/' . rawurlencode($slug);
 
 $customSeoData = [
     'title' => $blog['title'] . ' | Site And Marketing Tech Insights',
