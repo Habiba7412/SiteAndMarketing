@@ -93,6 +93,18 @@ h1, h2, h3, h4, h5, h6, .font-heading {
     animation-play-state: paused;
 }
 
+/* Accessibility: Support for prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+    .animate-marquee {
+        animation: none !important;
+        width: 100% !important;
+        overflow-x: auto;
+    }
+    .marquee-duplicate {
+        display: none !important;
+    }
+}
+
 /* Pulse animation for active dot markers */
 @keyframes double-pulse {
     0% {

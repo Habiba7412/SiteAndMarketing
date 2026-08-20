@@ -216,16 +216,42 @@ include __DIR__ . '/includes/header.php';
     </section>
     <?php endif; ?>
 
-    <!-- Endless Scrolling Marquee Banner -->
-    <?php if (!empty($marqueeTexts)): ?>
-    <section class="border-y border-slate-800 bg-brand-darker py-6 overflow-hidden select-none">
-        <div class="animate-marquee flex gap-8 whitespace-nowrap text-3xl sm:text-5xl font-heading font-black text-stroke uppercase">
-            <?php foreach (array_merge($marqueeTexts, $marqueeTexts) as $text): ?>
-            <span><?php echo htmlspecialchars($text); ?> <span class="text-brand-accent font-normal mx-6">•</span></span>
-            <?php endforeach; ?>
+    <!-- Seamless Scrolling Services Marquee -->
+    <?php
+    $modernMarqueeItems = [
+        ['icon' => 'fa-solid fa-code', 'text' => 'Web Development'],
+        ['icon' => 'fa-solid fa-pen-nib', 'text' => 'UI/UX Design'],
+        ['icon' => 'fa-solid fa-cart-shopping', 'text' => 'E-Commerce'],
+        ['icon' => 'fa-solid fa-chart-line', 'text' => 'SEO'],
+        ['icon' => 'fa-solid fa-bullhorn', 'text' => 'Digital Marketing'],
+        ['icon' => 'fa-solid fa-shield-halved', 'text' => 'Cyber Security'],
+        ['icon' => 'fa-solid fa-microchip', 'text' => 'AI Integration'],
+        ['icon' => 'fa-solid fa-cloud', 'text' => 'Cloud Solutions'],
+        ['icon' => 'fa-solid fa-mobile-screen-button', 'text' => 'Mobile App Development'],
+        ['icon' => 'fa-solid fa-laptop-code', 'text' => 'Custom Software'],
+        ['icon' => 'fa-brands fa-wordpress', 'text' => 'WordPress'],
+        ['icon' => 'fa-brands fa-shopify', 'text' => 'Shopify'],
+    ];
+    ?>
+    <section class="border-y border-slate-800/50 bg-brand-darker py-6 md:py-8 overflow-hidden select-none">
+        <div class="animate-marquee group relative">
+            <?php for ($i=0; $i<2; $i++): ?>
+            <div class="flex items-center gap-6 md:gap-10 px-3 md:px-5 <?php echo $i===1 ? 'marquee-duplicate' : ''; ?>" <?php echo $i===1 ? 'aria-hidden="true"' : ''; ?>>
+                <?php foreach ($modernMarqueeItems as $item): ?>
+                <div class="flex items-center gap-3 md:gap-4 group/item hover:cursor-pointer">
+                    <div class="w-8 h-8 md:w-12 md:h-12 rounded-full bg-brand-accent/10 flex items-center justify-center text-brand-accent group-hover/item:bg-brand-accent group-hover/item:text-brand-dark transition-colors duration-300">
+                        <i class="<?php echo htmlspecialchars($item['icon']); ?>"></i>
+                    </div>
+                    <span class="text-base md:text-xl font-heading font-bold text-slate-300 group-hover/item:text-white transition-colors duration-300">
+                        <?php echo htmlspecialchars($item['text']); ?>
+                    </span>
+                </div>
+                <span class="text-brand-accent/30 mx-1 md:mx-3 text-lg md:text-2xl">•</span>
+                <?php endforeach; ?>
+            </div>
+            <?php endfor; ?>
         </div>
     </section>
-    <?php endif; ?>
 
     <!-- Software Development Intro Section -->
     <section class="relative py-24 overflow-hidden">
