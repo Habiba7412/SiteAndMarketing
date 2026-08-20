@@ -9,7 +9,7 @@ header('Access-Control-Allow-Methods: GET, POST');
 
 session_start();
 if (!isset($_SESSION['admin_logged_in']) || $_SESSION['admin_logged_in'] !== true) {
-    http_response_code(401);
+    http_response_code(403);
     echo json_encode(['error' => 'Unauthorized access.']);
     exit();
 }
