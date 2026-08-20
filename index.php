@@ -297,7 +297,7 @@ include __DIR__ . '/includes/header.php';
                 <!-- Image Side -->
                 <div class="order-2 lg:order-1 relative reveal-on-scroll">
                     <div class="rounded-3xl overflow-hidden border border-white/10 shadow-2xl shadow-black/80 relative group">
-                        <img src="https://images.unsplash.com/photo-1542744094-3a31f103e35f?auto=format&fit=crop&w=800&q=80" alt="Modern Technology & Digital Innovation" class="w-full aspect-[16/11] object-cover opacity-85 group-hover:scale-105 transition-transform duration-700">
+                        <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?auto=format&fit=crop&w=800&q=80" alt="Modern Technology & Digital Innovation" class="w-full aspect-[16/11] object-cover opacity-85 group-hover:scale-105 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-brand-dark via-transparent to-transparent"></div>
                     </div>
                 </div>
