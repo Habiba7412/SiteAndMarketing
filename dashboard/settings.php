@@ -18,7 +18,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action']) && $_POST['
         'twitter_url',
         'linkedin_url',
         'github_url',
-        'consultation_btn_link'
+        'consultation_btn_link',
+        'hero_sub_heading',
+        'hero_headline',
+        'hero_description',
+        'hero_btn_text_1',
+        'hero_btn_url_1',
+        'hero_btn_text_2',
+        'hero_btn_url_2',
+        'hero_supporting_text',
+        'what_we_build_heading',
+        'what_we_build_desc',
+        'what_we_build'
     ];
     
     // File upload for website logo
@@ -200,13 +211,134 @@ require_once __DIR__ . '/header.php';
                             <input type="url" name="github_url" value="<?php echo htmlspecialchars($settings['github_url'] ?? ''); ?>" placeholder="https://github.com/..." class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
                         </div>
                     </div>
+            </div>
 
-                    <div class="flex justify-end">
-                        <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-brand-accent via-blue-500 to-sky-400 rounded-xl font-heading font-bold text-xs text-brand-dark hover:shadow-lg hover:shadow-brand-accent/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
-                            Save Global Settings
-                        </button>
+            <div class="grid grid-cols-1 gap-8 mt-4">
+                <div class="dashboard-card p-6 rounded-3xl border border-white/5 bg-brand-card flex flex-col gap-4">
+                    <h3 class="font-heading font-bold text-sm text-slate-400 uppercase tracking-wider border-b border-slate-800/40 pb-2 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-home text-xs text-brand-accent"></i>
+                        <span>Homepage Hero Configuration</span>
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Hero Eyebrow (Sub-heading)</label>
+                            <input type="text" name="hero_sub_heading" value="<?php echo htmlspecialchars($settings['hero_sub_heading'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Hero Headline (H1)</label>
+                            <input type="text" name="hero_headline" value="<?php echo htmlspecialchars($settings['hero_headline'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Hero Description</label>
+                        <textarea name="hero_description" rows="2" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors resize-none"><?php echo htmlspecialchars($settings['hero_description'] ?? ''); ?></textarea>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div class="flex flex-col gap-4 p-4 border border-slate-800/50 rounded-xl">
+                            <span class="text-[10px] uppercase font-bold tracking-wider text-brand-accent">Primary Button</span>
+                            <input type="text" name="hero_btn_text_1" value="<?php echo htmlspecialchars($settings['hero_btn_text_1'] ?? ''); ?>" placeholder="Button Text" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            <input type="text" name="hero_btn_url_1" value="<?php echo htmlspecialchars($settings['hero_btn_url_1'] ?? ''); ?>" placeholder="URL Link" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                        <div class="flex flex-col gap-4 p-4 border border-slate-800/50 rounded-xl">
+                            <span class="text-[10px] uppercase font-bold tracking-wider text-slate-400">Secondary Button</span>
+                            <input type="text" name="hero_btn_text_2" value="<?php echo htmlspecialchars($settings['hero_btn_text_2'] ?? ''); ?>" placeholder="Button Text" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                            <input type="text" name="hero_btn_url_2" value="<?php echo htmlspecialchars($settings['hero_btn_url_2'] ?? ''); ?>" placeholder="URL Link" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Supporting Text (Below Buttons)</label>
+                        <input type="text" name="hero_supporting_text" value="<?php echo htmlspecialchars($settings['hero_supporting_text'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
                     </div>
                 </div>
+
+                <div class="dashboard-card p-6 rounded-3xl border border-white/5 bg-brand-card flex flex-col gap-4">
+                    <h3 class="font-heading font-bold text-sm text-slate-400 uppercase tracking-wider border-b border-slate-800/40 pb-2 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-layer-group text-xs text-emerald-400"></i>
+                        <span>What We Build Section</span>
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Section Heading</label>
+                            <input type="text" name="what_we_build_heading" value="<?php echo htmlspecialchars($settings['what_we_build_heading'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Section Description</label>
+                            <input type="text" name="what_we_build_desc" value="<?php echo htmlspecialchars($settings['what_we_build_desc'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Cards Configuration (JSON Array format)</label>
+                        <?php
+                        $defaultWhatWeBuild = json_encode([
+                            ['number' => '01', 'icon' => 'fa-globe', 'title' => 'Business Websites', 'description' => 'Professional websites designed to establish your brand, communicate your value and generate qualified leads.', 'link' => 'services.php'],
+                            ['number' => '02', 'icon' => 'fa-laptop-code', 'title' => 'Custom Web Applications', 'description' => 'Tailor-made applications built around your unique business processes, workflows and requirements.', 'link' => 'services.php'],
+                            ['number' => '03', 'icon' => 'fa-table-columns', 'title' => 'Admin Dashboards & CMS', 'description' => 'Powerful dashboards and content management systems that give you complete control over your website and business data.', 'link' => 'services.php'],
+                            ['number' => '04', 'icon' => 'fa-cart-shopping', 'title' => 'E-Commerce Solutions', 'description' => 'Scalable online stores with product management, secure checkout, payment integration and order management.', 'link' => 'services.php'],
+                            ['number' => '05', 'icon' => 'fa-wand-magic-sparkles', 'title' => 'Website Redesign', 'description' => 'Modernize outdated websites with better design, responsiveness, usability, performance and functionality.', 'link' => 'services.php'],
+                            ['number' => '06', 'icon' => 'fa-gears', 'title' => 'Business Automation', 'description' => 'Digital tools and integrations that help businesses reduce manual work and improve operational efficiency.', 'link' => 'services.php']
+                        ], JSON_PRETTY_PRINT);
+                        ?>
+                        <textarea name="what_we_build" rows="10" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors resize-y"><?php echo htmlspecialchars($settings['what_we_build'] ?? $defaultWhatWeBuild); ?></textarea>
+                    </div>
+                </div>
+                
+                <div class="dashboard-card p-6 rounded-3xl border border-white/5 bg-brand-card flex flex-col gap-4">
+                    <h3 class="font-heading font-bold text-sm text-slate-400 uppercase tracking-wider border-b border-slate-800/40 pb-2 mb-2 flex items-center gap-2">
+                        <i class="fa-solid fa-wand-magic-sparkles text-xs text-sky-400"></i>
+                        <span>Dynamic Homepage Sections</span>
+                    </h3>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Testimonials Heading</label>
+                            <input type="text" name="testimonial_heading" value="<?php echo htmlspecialchars($settings['testimonial_heading'] ?? ''); ?>" placeholder="What Our Clients Say" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Client Logos (JSON Array of Objects)</label>
+                            <input type="text" name="client_logos" value="<?php echo htmlspecialchars($settings['client_logos'] ?? ''); ?>" placeholder='[{"name":"", "image_url":""}]' class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Checklist Title</label>
+                            <input type="text" name="checklist_title" value="<?php echo htmlspecialchars($settings['checklist_title'] ?? ''); ?>" placeholder="Modern Technology Services" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Checklist Description</label>
+                            <input type="text" name="checklist_desc" value="<?php echo htmlspecialchars($settings['checklist_desc'] ?? ''); ?>" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs text-slate-100 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Marquee Texts (JSON Array)</label>
+                        <textarea name="marquee_texts" rows="3" placeholder='["Service 1", "Service 2"]' class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors resize-y"><?php echo htmlspecialchars($settings['marquee_texts'] ?? ''); ?></textarea>
+                    </div>
+
+                    <div>
+                        <label class="block text-[10px] uppercase font-bold tracking-wider text-slate-400 mb-1.5">Checklist Items (JSON Array of Objects)</label>
+                        <?php
+                        $defaultChecklist = json_encode([
+                            ['title' => 'Agile Software Development', 'description' => 'Custom web applications and enterprise software built using Agile methodologies.', 'icon' => 'fa-rocket'],
+                            ['title' => 'Cloud Infrastructure', 'description' => 'Secure, scalable infrastructures using AWS, Azure, GCP.', 'icon' => 'fa-cloud'],
+                            ['title' => 'Cybersecurity', 'description' => 'Threat detection, encryption, and proactive monitoring to keep systems safe.', 'icon' => 'fa-shield-halved']
+                        ], JSON_PRETTY_PRINT);
+                        ?>
+                        <textarea name="checklist_items" rows="6" class="w-full bg-brand-dark/50 border border-slate-800/60 rounded-xl px-4 py-2.5 text-xs font-mono text-slate-300 placeholder-slate-600 focus:outline-none focus:border-brand-accent transition-colors resize-y"><?php echo htmlspecialchars($settings['checklist_items'] ?? $defaultChecklist); ?></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex justify-end mt-4">
+                <button type="submit" class="w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-brand-accent via-blue-500 to-sky-400 rounded-xl font-heading font-bold text-xs text-brand-dark hover:shadow-lg hover:shadow-brand-accent/20 hover:scale-[1.02] active:scale-[0.98] transition-all">
+                    Save Global Settings
+                </button>
             </div>
         </form>
     </div>

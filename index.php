@@ -66,6 +66,19 @@ $aboutImage     = Setting::get('about_image', 'https://images.unsplash.com/photo
 $aboutCounters  = json_decode(Setting::get('about_counters', '[]'), true) ?: [];
 $aboutFeatures  = json_decode(Setting::get('about_features', '[]'), true) ?: [];
 
+$heroSupportingText = Setting::get('hero_supporting_text', 'Custom Development • Responsive Design • SEO-Ready • Scalable Solutions');
+$whatWeBuild = json_decode(Setting::get('what_we_build', '[]'), true) ?: [];
+$whatWeBuildHeading = Setting::get('what_we_build_heading', 'Digital Solutions Built Around Your Business');
+$whatWeBuildDesc = Setting::get('what_we_build_desc', 'From business websites to custom web applications, we build practical digital solutions designed around your requirements, customers and business goals.');
+
+$clientLogos = json_decode(Setting::get('client_logos', '[]'), true) ?: [];
+$testimonialHeading = Setting::get('testimonial_heading', 'What Our Clients Say');
+$marqueeTexts = json_decode(Setting::get('marquee_texts', '["Software Development", "Cloud Architecture", "Cyber Security", "AI Integrations", "Data Analytics"]'), true) ?: [];
+$checklistTitle = Setting::get('checklist_title', 'Modern Technology & Digital Innovation Services');
+$checklistDesc = Setting::get('checklist_desc', 'At Site And Marketing Technologies, we combine innovation, expertise, and the latest technologies to help businesses build secure, scalable, and future-ready digital solutions.');
+$checklistItems = json_decode(Setting::get('checklist_items', '[]'), true) ?: [];
+
+
 include __DIR__ . '/includes/header.php';
 ?>
 
@@ -92,8 +105,7 @@ include __DIR__ . '/includes/header.php';
                         <?php echo htmlspecialchars($heroDesc); ?>
                     </p>
  
-                    <!-- Stats Grid (2x2 Layout) - Dynamic from DB -->
-                    <div class="grid grid-cols-2 gap-6 my-4 max-w-md">
+                    <div class="grid grid-cols-2 gap-6 my-4 max-w-md hidden">
                         <?php foreach ($aboutCounters as $counter): ?>
                         <div class="flex flex-col gap-1">
                             <span class="font-heading font-black text-3xl sm:text-4xl text-white"><?php echo htmlspecialchars($counter['value']); ?></span>
@@ -114,6 +126,11 @@ include __DIR__ . '/includes/header.php';
                             <i class="fa-solid fa-arrow-right text-xs text-brand-accent"></i>
                         </a>
                     </div>
+
+                    <!-- Supporting Text -->
+                    <div class="mt-6 text-sm font-semibold text-slate-400 tracking-wide">
+                        <?php echo htmlspecialchars($heroSupportingText); ?>
+                    </div>
                 </div>
 
                 <!-- Hero Image Column -->
@@ -132,22 +149,59 @@ include __DIR__ . '/includes/header.php';
         </div>
     </section>
 
-    <!-- Endless Scrolling Marquee Banner -->
-    <section class="border-y border-slate-800 bg-brand-darker py-6 overflow-hidden select-none">
-        <div class="animate-marquee flex gap-8 whitespace-nowrap text-3xl sm:text-5xl font-heading font-black text-stroke uppercase">
-            <span>Software Development <span class="text-brand-accent font-normal mx-6">•</span></span>
-            <span>Cloud Architecture <span class="text-brand-accent font-normal mx-6">•</span></span>
-            <span>Cyber Security <span class="text-brand-accent font-normal mx-6">•</span></span>
-            <span>AI Integrations <span class="text-brand-accent font-normal mx-6">•</span></span>
-            <span>Data Analytics <span class="text-brand-accent font-normal mx-6">•</span></span>
-            <!-- Duplicated for smooth loop -->
-            <span>Software Development <span class="text-brand-accent font-normal mx-6">•</span></span>
-            <span>Cloud Architecture <span class="text-brand-accent font-normal mx-6">•</span></span>
-            <span>Cyber Security <span class="text-brand-accent font-normal mx-6">•</span></span>
-            <span>AI Integrations <span class="text-brand-accent font-normal mx-6">•</span></span>
-            <span>Data Analytics <span class="text-brand-accent font-normal mx-6">•</span></span>
+    <!-- What We Build Section -->
+    <?php if (!empty($whatWeBuild)): ?>
+    <section class="py-24 relative overflow-hidden bg-brand-dark">
+        <div class="max-w-7xl mx-auto px-6 md:px-12 relative z-10">
+            <!-- Heading Container -->
+            <div class="text-center max-w-3xl mx-auto mb-16 flex flex-col gap-4 reveal-on-scroll">
+                <h2 class="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
+                    <?php echo htmlspecialchars($whatWeBuildHeading); ?>
+                </h2>
+                <p class="text-slate-400 text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+                    <?php echo htmlspecialchars($whatWeBuildDesc); ?>
+                </p>
+            </div>
+
+            <!-- Cards Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <?php $delay = 0; foreach ($whatWeBuild as $card): ?>
+                <div class="glass-panel rounded-3xl p-8 border border-white/5 flex flex-col gap-5 hover:border-brand-accent/30 transition-all duration-300 reveal-on-scroll <?php echo $delay > 0 ? 'delay-' . $delay : ''; ?>">
+                    <div class="flex items-center justify-between">
+                        <div class="w-12 h-12 rounded-xl bg-brand-accent/10 flex items-center justify-center text-brand-accent text-xl">
+                            <i class="fa-solid <?php echo htmlspecialchars($card['icon']); ?>"></i>
+                        </div>
+                        <span class="text-3xl font-heading font-black text-white/10"><?php echo htmlspecialchars($card['number']); ?></span>
+                    </div>
+                    <h3 class="font-heading font-bold text-xl text-white mt-2"><?php echo htmlspecialchars($card['title']); ?></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed flex-grow">
+                        <?php echo htmlspecialchars($card['description']); ?>
+                    </p>
+                    <?php if (!empty($card['link'])): ?>
+                    <div class="mt-4 pt-4 border-t border-slate-800/50">
+                        <a href="<?php echo htmlspecialchars($card['link']); ?>" class="inline-flex items-center gap-2 text-brand-accent hover:text-white text-xs font-bold uppercase tracking-wider group/link">
+                            <span>Learn More</span>
+                            <i class="fa-solid fa-arrow-right text-[10px] group-hover/link:translate-x-1 transition-transform"></i>
+                        </a>
+                    </div>
+                    <?php endif; ?>
+                </div>
+                <?php $delay = ($delay + 100) % 300; endforeach; ?>
+            </div>
         </div>
     </section>
+    <?php endif; ?>
+
+    <!-- Endless Scrolling Marquee Banner -->
+    <?php if (!empty($marqueeTexts)): ?>
+    <section class="border-y border-slate-800 bg-brand-darker py-6 overflow-hidden select-none">
+        <div class="animate-marquee flex gap-8 whitespace-nowrap text-3xl sm:text-5xl font-heading font-black text-stroke uppercase">
+            <?php foreach (array_merge($marqueeTexts, $marqueeTexts) as $text): ?>
+            <span><?php echo htmlspecialchars($text); ?> <span class="text-brand-accent font-normal mx-6">•</span></span>
+            <?php endforeach; ?>
+        </div>
+    </section>
+    <?php endif; ?>
 
     <!-- Software Development Intro Section -->
     <section class="relative py-24 overflow-hidden">
@@ -179,28 +233,6 @@ include __DIR__ . '/includes/header.php';
                         <div class="col-span-8 rounded-2xl overflow-hidden border border-white/5 shadow-2xl relative z-10">
                             <img src="https://images.unsplash.com/photo-1531482615713-2afd69097998?auto=format&fit=crop&w=700&q=80" alt="Tech Collaboration" class="w-full object-cover aspect-[4/3] grayscale hover:grayscale-0 transition-all duration-500">
                         </div>
-                        
-                        <!-- Floating Glass Stats Panel -->
-                        <div class="col-span-6 lg:col-span-5 absolute -right-2 -bottom-6 glass-panel rounded-2xl p-6 border border-white/10 shadow-2xl z-20 flex flex-col gap-4">
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-brand-accent/15 flex items-center justify-center text-brand-accent">
-                                    <i class="fa-solid fa-users text-lg"></i>
-                                </div>
-                                <div>
-                                    <div class="font-heading font-black text-xl text-white">36k+</div>
-                                    <div class="text-[10px] uppercase text-slate-400 tracking-wider">Happy Users</div>
-                                </div>
-                            </div>
-                            <div class="h-px bg-slate-800"></div>
-                            <div class="flex items-center gap-3">
-                                <div class="w-10 h-10 rounded-lg bg-emerald-400/15 flex items-center justify-center text-emerald-400">
-                                    <i class="fa-solid fa-award text-lg"></i>
-                                </div>
-                                <div>
-                                    <div class="font-heading font-black text-xl text-white">850+</div>
-                                    <div class="text-[10px] uppercase text-slate-400 tracking-wider">Expert Engineers</div>
-                                </div>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -224,43 +256,29 @@ include __DIR__ . '/includes/header.php';
                 <div class="order-1 lg:order-2 flex flex-col gap-6 reveal-on-scroll delay-200">
                     <span class="text-xs font-bold tracking-widest text-brand-accent uppercase font-heading">MODERN TECHNOLOGY</span>
                     <h2 class="font-heading font-black text-3xl sm:text-4xl lg:text-5xl text-white leading-tight">
-                        Modern Technology & <span class="text-gradient-blue">Digital Innovation Services</span>
+                        <?php echo htmlspecialchars($checklistTitle ?? 'Modern Technology & Digital Innovation Services'); ?>
                     </h2>
                     
                     <p class="text-slate-300 text-base leading-relaxed">
-                        At <strong class="text-white font-semibold">Site And Marketing Technologies</strong>, we combine innovation, expertise, and the latest technologies to help businesses build secure, scalable, and future-ready digital solutions. From custom software development to cloud infrastructure, AI integration, and cybersecurity, our team delivers high-performance solutions that accelerate growth, improve efficiency, and drive digital transformation.
+                        <?php echo htmlspecialchars($checklistDesc ?? 'At Site And Marketing Technologies, we combine innovation, expertise, and the latest technologies to help businesses build secure, scalable, and future-ready digital solutions.'); ?>
                     </p>
 
                     <!-- Interactive Checklist -->
+                    <?php if (!empty($checklistItems)): ?>
                     <ul class="flex flex-col gap-4 mt-2">
+                        <?php foreach ($checklistItems as $item): ?>
                         <li class="flex items-start gap-4 group">
-                            <span class="w-7 h-7 rounded-lg bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 mt-1 shrink-0 group-hover:bg-blue-600 group-hover:text-white transition-all">
-                                <i class="fa-solid fa-rocket text-xs"></i>
+                            <span class="w-7 h-7 rounded-lg bg-brand-accent/15 border border-brand-accent/30 flex items-center justify-center text-brand-accent mt-1 shrink-0 group-hover:bg-brand-accent group-hover:text-brand-dark transition-all">
+                                <i class="fa-solid <?php echo htmlspecialchars($item['icon'] ?? 'fa-check'); ?> text-xs"></i>
                             </span>
                             <div>
-                                <h4 class="font-heading font-bold text-lg text-white">🚀 Agile Software Development</h4>
-                                <p class="text-sm text-slate-400 mt-1 leading-relaxed">Custom web applications and enterprise software built using Agile methodologies for faster delivery, clean code, and outstanding performance.</p>
+                                <h4 class="font-heading font-bold text-lg text-white"><?php echo htmlspecialchars($item['title']); ?></h4>
+                                <p class="text-sm text-slate-400 mt-1 leading-relaxed"><?php echo htmlspecialchars($item['description']); ?></p>
                             </div>
                         </li>
-                        <li class="flex items-start gap-4 group">
-                            <span class="w-7 h-7 rounded-lg bg-cyan-500/15 border border-cyan-500/30 flex items-center justify-center text-cyan-400 mt-1 shrink-0 group-hover:bg-cyan-500 group-hover:text-slate-950 transition-all">
-                                <i class="fa-solid fa-cloud text-xs"></i>
-                            </span>
-                            <div>
-                                <h4 class="font-heading font-bold text-lg text-white">☁️ Cloud Infrastructure & DevOps</h4>
-                                <p class="text-sm text-slate-400 mt-1 leading-relaxed">Secure, scalable infrastructures using AWS, Azure, GCP, Docker, Kubernetes, and automated CI/CD pipelines to maximize efficiency.</p>
-                            </div>
-                        </li>
-                        <li class="flex items-start gap-4 group">
-                            <span class="w-7 h-7 rounded-lg bg-indigo-500/15 border border-indigo-500/30 flex items-center justify-center text-indigo-400 mt-1 shrink-0 group-hover:bg-indigo-600 group-hover:text-white transition-all">
-                                <i class="fa-solid fa-shield-halved text-xs"></i>
-                            </span>
-                            <div>
-                                <h4 class="font-heading font-bold text-lg text-white">🔒 Cybersecurity & Data Protection</h4>
-                                <p class="text-sm text-slate-400 mt-1 leading-relaxed">Threat detection, vulnerability assessments, encryption, firewall management, and proactive monitoring to keep systems safe.</p>
-                            </div>
-                        </li>
+                        <?php endforeach; ?>
                     </ul>
+                    <?php endif; ?>
 
                     <div class="mt-2">
                         <a href="services.php" class="inline-flex items-center gap-2 text-sm font-bold text-brand-accent hover:text-white uppercase tracking-wider group">
@@ -369,30 +387,17 @@ include __DIR__ . '/includes/header.php';
     </section>
 
     <!-- Client / Partner Logo Grid -->
+    <?php if (!empty($clientLogos)): ?>
     <section class="py-12 bg-brand-darker border-y border-slate-900">
         <div class="max-w-7xl mx-auto px-6 md:px-12 flex flex-wrap items-center justify-between gap-8 text-slate-500">
+            <?php foreach ($clientLogos as $logo): ?>
             <div class="flex items-center gap-2 hover:text-white transition-colors duration-300 select-none">
-                <i class="fa-brands fa-google text-2xl"></i>
-                <span class="font-heading font-black tracking-wider uppercase text-lg">Google</span>
+                <img src="<?php echo htmlspecialchars($logo['image_url']); ?>" alt="<?php echo htmlspecialchars($logo['name']); ?>" class="h-8 object-contain grayscale hover:grayscale-0 transition-all opacity-60 hover:opacity-100">
             </div>
-            <div class="flex items-center gap-2 hover:text-white transition-colors duration-300 select-none">
-                <i class="fa-brands fa-microsoft text-2xl"></i>
-                <span class="font-heading font-black tracking-wider uppercase text-lg">Microsoft</span>
-            </div>
-            <div class="flex items-center gap-2 hover:text-white transition-colors duration-300 select-none">
-                <i class="fa-brands fa-aws text-2xl"></i>
-                <span class="font-heading font-black tracking-wider uppercase text-lg">Amazon Web</span>
-            </div>
-            <div class="flex items-center gap-2 hover:text-white transition-colors duration-300 select-none">
-                <i class="fa-brands fa-digital-ocean text-2xl"></i>
-                <span class="font-heading font-black tracking-wider uppercase text-lg">DigitalOcean</span>
-            </div>
-            <div class="flex items-center gap-2 hover:text-white transition-colors duration-300 select-none">
-                <i class="fa-brands fa-salesforce text-2xl"></i>
-                <span class="font-heading font-black tracking-wider uppercase text-lg">Salesforce</span>
-            </div>
+            <?php endforeach; ?>
         </div>
     </section>
+    <?php endif; ?>
 
     <!-- Meet Our Experienced Team Section -->
     <section class="py-24 relative overflow-hidden bg-brand-dark/30">
@@ -479,169 +484,37 @@ include __DIR__ . '/includes/header.php';
 
             <!-- Portfolio Projects Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="portfolio-grid">
-                
-                <!-- Project 1: Enterprise Business Website -->
-                <div class="project-card bg-saas-card bg-saas-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col group transition-all duration-500 reveal-on-scroll" data-category="web-development">
+                <?php $delay = 0; foreach ($projectsList as $project): ?>
+                <div class="project-card bg-saas-card bg-saas-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col group transition-all duration-500 reveal-on-scroll <?php echo $delay > 0 ? 'delay-' . $delay : ''; ?>" data-category="<?php echo htmlspecialchars(strtolower(str_replace(' ', '-', $project['category'] ?? 'web-development'))); ?>">
                     <div class="aspect-[16/10] overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80" alt="Enterprise Business Website" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                        <img src="<?php echo htmlspecialchars($project['image_url'] ?: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80'); ?>" alt="<?php echo htmlspecialchars($project['title']); ?>" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
                         <div class="absolute inset-0 bg-gradient-to-t from-[#081018] via-transparent to-transparent opacity-90"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold font-heading bg-blue-500/20 border border-blue-500/40 text-blue-400 backdrop-blur-md">Web Development</span>
+                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold font-heading bg-blue-500/20 border border-blue-500/40 text-blue-400 backdrop-blur-md"><?php echo htmlspecialchars($project['category'] ?? 'Project'); ?></span>
                     </div>
                     <div class="p-7 flex flex-col flex-grow justify-between gap-4">
                         <div>
-                            <span class="text-xs text-slate-400 font-medium block mb-1"><i class="fa-solid fa-building text-blue-400 mr-1"></i> Corporate Enterprise</span>
-                            <h3 class="font-heading font-black text-xl text-white group-hover:text-blue-400 transition-colors">Enterprise Business Website</h3>
-                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">Designed and developed a fully responsive corporate website with modern UI, SEO optimization, and an easy CMS.</p>
+                            <span class="text-xs text-slate-400 font-medium block mb-1"><i class="fa-solid fa-folder-open text-blue-400 mr-1"></i> <?php echo htmlspecialchars($project['client_name'] ?? 'Client'); ?></span>
+                            <h3 class="font-heading font-black text-xl text-white group-hover:text-blue-400 transition-colors"><?php echo htmlspecialchars($project['title']); ?></h3>
+                            <p class="text-slate-300 text-sm mt-2 leading-relaxed"><?php echo htmlspecialchars($project['description']); ?></p>
                         </div>
                         <div>
                             <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">HTML5</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">Tailwind</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">PHP</span>
+                                <?php 
+                                $techs = array_map('trim', explode(',', $project['technologies'] ?? ''));
+                                foreach (array_slice($techs, 0, 3) as $tech): 
+                                    if(empty($tech)) continue;
+                                ?>
+                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5"><?php echo htmlspecialchars($tech); ?></span>
+                                <?php endforeach; ?>
                             </div>
-                            <a href="projects.php" class="inline-flex items-center gap-2 text-xs font-bold text-blue-400 hover:text-white group/btn">
+                            <a href="project-details.php?id=<?php echo $project['id']; ?>" class="inline-flex items-center gap-2 text-xs font-bold text-blue-400 hover:text-white group/btn">
                                 <span>Read Full Case Study</span>
                                 <i class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"></i>
                             </a>
                         </div>
                     </div>
                 </div>
-
-                <!-- Project 2: E-Commerce Platform -->
-                <div class="project-card bg-saas-card bg-saas-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col group transition-all duration-500 reveal-on-scroll delay-75" data-category="e-commerce">
-                    <div class="aspect-[16/10] overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1556742049-0a6754099a6b?auto=format&fit=crop&w=800&q=80" alt="E-Commerce Platform" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#081018] via-transparent to-transparent opacity-90"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold font-heading bg-cyan-500/20 border border-cyan-500/40 text-cyan-400 backdrop-blur-md">E-Commerce</span>
-                    </div>
-                    <div class="p-7 flex flex-col flex-grow justify-between gap-4">
-                        <div>
-                            <span class="text-xs text-slate-400 font-medium block mb-1"><i class="fa-solid fa-cart-shopping text-cyan-400 mr-1"></i> Retail & E-Commerce</span>
-                            <h3 class="font-heading font-black text-xl text-white group-hover:text-cyan-400 transition-colors">E-Commerce Platform</h3>
-                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">Built a secure shopping platform with payment integration, inventory control, and customer analytics dashboards.</p>
-                        </div>
-                        <div>
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">Laravel</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">MySQL</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">Stripe API</span>
-                            </div>
-                            <a href="projects.php" class="inline-flex items-center gap-2 text-xs font-bold text-cyan-400 hover:text-white group/btn">
-                                <span>Read Full Case Study</span>
-                                <i class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 3: School Management System -->
-                <div class="project-card bg-saas-card bg-saas-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col group transition-all duration-500 reveal-on-scroll delay-100" data-category="software-development">
-                    <div class="aspect-[16/10] overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=800&q=80" alt="School Management System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#081018] via-transparent to-transparent opacity-90"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold font-heading bg-emerald-500/20 border border-emerald-500/40 text-emerald-400 backdrop-blur-md">Software Dev</span>
-                    </div>
-                    <div class="p-7 flex flex-col flex-grow justify-between gap-4">
-                        <div>
-                            <span class="text-xs text-slate-400 font-medium block mb-1"><i class="fa-solid fa-graduation-cap text-emerald-400 mr-1"></i> Education</span>
-                            <h3 class="font-heading font-black text-xl text-white group-hover:text-emerald-400 transition-colors">School Management System</h3>
-                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">Complete solution for student records, attendance, online admissions, exams, fee management, and portals.</p>
-                        </div>
-                        <div>
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">PHP</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">MySQL</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">JavaScript</span>
-                            </div>
-                            <a href="projects.php" class="inline-flex items-center gap-2 text-xs font-bold text-emerald-400 hover:text-white group/btn">
-                                <span>Read Full Case Study</span>
-                                <i class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 4: Mobile Business Application -->
-                <div class="project-card bg-saas-card bg-saas-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col group transition-all duration-500 reveal-on-scroll" data-category="mobile-apps">
-                    <div class="aspect-[16/10] overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=800&q=80" alt="Mobile Business Application" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#081018] via-transparent to-transparent opacity-90"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold font-heading bg-indigo-500/20 border border-indigo-500/40 text-indigo-400 backdrop-blur-md">Mobile Applications</span>
-                    </div>
-                    <div class="p-7 flex flex-col flex-grow justify-between gap-4">
-                        <div>
-                            <span class="text-xs text-slate-400 font-medium block mb-1"><i class="fa-solid fa-mobile text-indigo-400 mr-1"></i> Finance & Commerce</span>
-                            <h3 class="font-heading font-black text-xl text-white group-hover:text-indigo-400 transition-colors">Mobile Business Application</h3>
-                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">Cross-platform mobile application with secure authentication, push notifications, and cloud sync.</p>
-                        </div>
-                        <div>
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">React Native</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">Firebase</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">Node.js</span>
-                            </div>
-                            <a href="projects.php" class="inline-flex items-center gap-2 text-xs font-bold text-indigo-400 hover:text-white group/btn">
-                                <span>Read Full Case Study</span>
-                                <i class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 5: AI Customer Support Assistant -->
-                <div class="project-card bg-saas-card bg-saas-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col group transition-all duration-500 reveal-on-scroll delay-75" data-category="ai-solutions">
-                    <div class="aspect-[16/10] overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1677442136019-21780efad99a?auto=format&fit=crop&w=800&q=80" alt="AI Customer Support Assistant" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#081018] via-transparent to-transparent opacity-90"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold font-heading bg-sky-500/20 border border-sky-500/40 text-sky-400 backdrop-blur-md">AI Solutions</span>
-                    </div>
-                    <div class="p-7 flex flex-col flex-grow justify-between gap-4">
-                        <div>
-                            <span class="text-xs text-slate-400 font-medium block mb-1"><i class="fa-solid fa-robot text-sky-400 mr-1"></i> AI & SaaS</span>
-                            <h3 class="font-heading font-black text-xl text-white group-hover:text-sky-400 transition-colors">AI Customer Support Assistant</h3>
-                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">AI-powered chatbot capable of handling inquiries, automating support, and boosting user satisfaction.</p>
-                        </div>
-                        <div>
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">OpenAI API</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">Python</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">WebSockets</span>
-                            </div>
-                            <a href="projects.php" class="inline-flex items-center gap-2 text-xs font-bold text-sky-400 hover:text-white group/btn">
-                                <span>Read Full Case Study</span>
-                                <i class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Project 6: Hospital Management System -->
-                <div class="project-card bg-saas-card bg-saas-card-hover rounded-3xl overflow-hidden border border-white/10 flex flex-col group transition-all duration-500 reveal-on-scroll delay-100" data-category="software-development">
-                    <div class="aspect-[16/10] overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80" alt="Hospital Management System" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
-                        <div class="absolute inset-0 bg-gradient-to-t from-[#081018] via-transparent to-transparent opacity-90"></div>
-                        <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-xs font-bold font-heading bg-blue-500/20 border border-blue-500/40 text-blue-400 backdrop-blur-md">Software Dev</span>
-                    </div>
-                    <div class="p-7 flex flex-col flex-grow justify-between gap-4">
-                        <div>
-                            <span class="text-xs text-slate-400 font-medium block mb-1"><i class="fa-solid fa-hospital text-blue-400 mr-1"></i> Healthcare</span>
-                            <h3 class="font-heading font-black text-xl text-white group-hover:text-blue-400 transition-colors">Hospital Management System</h3>
-                            <p class="text-slate-300 text-sm mt-2 leading-relaxed">Healthcare platform for appointment booking, patient records, billing, pharmacy, and doctor scheduling.</p>
-                        </div>
-                        <div>
-                            <div class="flex flex-wrap gap-1.5 mb-4">
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">Laravel</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">MySQL</span>
-                                <span class="px-2 py-0.5 rounded text-[10px] font-semibold bg-slate-800 text-slate-300 border border-white/5">REST API</span>
-                            </div>
-                            <a href="projects.php" class="inline-flex items-center gap-2 text-xs font-bold text-blue-400 hover:text-white group/btn">
-                                <span>Read Full Case Study</span>
-                                <i class="fa-solid fa-arrow-right text-[10px] group-hover/btn:translate-x-1 transition-transform"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-
+                <?php $delay = ($delay + 75) % 300; endforeach; ?>
             </div>
             
             <div class="text-center mt-14 reveal-on-scroll">
@@ -662,7 +535,7 @@ include __DIR__ . '/includes/header.php';
                 <div class="lg:col-span-7 flex flex-col gap-6">
                     <span class="text-sm font-bold tracking-wider text-brand-accent uppercase font-heading">Testimonials</span>
                     <h2 class="font-heading font-extrabold text-3xl sm:text-4xl text-white leading-tight">
-                        1250+ People Say About Us
+                        <?php echo htmlspecialchars($testimonialHeading); ?>
                     </h2>
                     
                     <!-- Carousel Slider Outer -->
