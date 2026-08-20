@@ -121,7 +121,7 @@ include __DIR__ . '/includes/header.php';
                         <span class="text-xs font-bold uppercase tracking-wider text-brand-accent font-heading">siteandmarketing</span>
                     </div>
 
-                    <h2 class="font-heading font-black text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
+                    <h2 class="font-heading font-bold text-4xl sm:text-5xl lg:text-6xl text-white leading-tight">
                         Transforming Ideas Into Powerful Digital Solutions for Modern Businesses
                     </h2>
  
